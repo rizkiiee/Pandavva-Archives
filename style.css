@@ -251,21 +251,28 @@ main{
 
 /* ===== STACK HIGHLIGHT ===== */
 
-.highlight-row{
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+.highlight-wrapper{
+  overflow:hidden;
+  width:100%;
 }
 
-.highlight-stack{
+.highlight-row{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
+  gap:20px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:10px;
+}
 
-  background:#1a1a1d;
-  border-radius:20px;
-  padding:20px;
-  overflow:hidden;
+.highlight-row::-webkit-scrollbar{
+  display:none;
+}
+
+/* tiap card */
+.highlight-stack{
+  min-width:500px; /* 🔥 ini penting */
+  flex-shrink:0;
+  scroll-snap-align:start;
 }
 
 /* LEFT TEXT */
