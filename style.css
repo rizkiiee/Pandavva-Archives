@@ -140,6 +140,28 @@ main{
   padding:6px;
 }
 
+/* ===== FIX SIDEBAR FULL IMAGE ===== */
+.sidebar img{
+  width:40px;
+  height:40px;
+  object-fit:cover;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.channel{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.channel span{
+  font-size:14px;
+}
+
+.sidebar{
+  z-index:2000; /* biar di atas */
+}
 
 /* =========================
    5. HOME 2 COLUMN
