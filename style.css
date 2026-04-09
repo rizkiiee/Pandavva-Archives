@@ -1008,31 +1008,43 @@ box-sizing:border-box;
 /*HIGHLIGHT*/
 .highlight-row{
   display:flex;
-  gap:12px;
+  gap:14px;
   overflow-x:auto;
-  padding:10px 0;
 }
 
 .highlight-card{
-  min-width:240px;
+  min-width:180px;
   background:#1a1a1d;
   border-radius:14px;
-  overflow:hidden;
+  padding:10px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.highlight-card img{
+.highlight-card:hover{
+  transform:scale(1.03);
+}
+
+/* 🔥 MOSAIC */
+.highlight-mosaic{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+}
+
+.highlight-mosaic img{
   width:100%;
-  height:140px;
+  height:60px;
   object-fit:cover;
+  border-radius:6px;
 }
 
-.highlight-card h3{
-  padding:8px 10px 0;
+.highlight-info h3{
+  margin:8px 0 2px;
   font-size:14px;
 }
 
-.highlight-card p{
-  padding:0 10px 10px;
-  font-size:12px;
+.highlight-info p{
+  font-size:11px;
   opacity:.7;
 }
