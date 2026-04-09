@@ -94,6 +94,12 @@ main{
   cursor:pointer;
   object-fit:cover;
   flex-shrink:0;
+  display:block;
+}
+
+.sidebar-mini img{
+  max-width:38px;
+  max-height:38px;
 }
 
 .sidebar{
