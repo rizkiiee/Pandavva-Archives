@@ -188,11 +188,9 @@ main{
   background:#1a1a1d;
   border-radius:12px;
   overflow:hidden;
-  height:220px;
 
   display:flex;
   flex-direction:column;
-  transition:.2s;
 }
 
 .video:hover{
@@ -208,6 +206,7 @@ main{
   width:100%;
   height:100%;
   object-fit:cover;
+  overflow:hidden;
 }
 
 .video h3{
