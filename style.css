@@ -252,27 +252,44 @@ main{
 /* ===== STACK HIGHLIGHT ===== */
 
 .highlight-wrapper{
-  overflow:hidden;
   width:100%;
+  overflow:hidden;
+  position:relative;
+}
+
+.highlight-wrapper{
+  padding:0 120px; /* 🔥 bikin card samping keliatan */
 }
 
 .highlight-row{
   display:flex;
   gap:20px;
+
   overflow-x:auto;
   scroll-snap-type:x mandatory;
-  padding-bottom:10px;
+
+  padding:10px 0;
+
+  justify-content:center; /* 🔥 INI KUNCI */
 }
 
-.highlight-row::-webkit-scrollbar{
-  display:none;
-}
-
-/* tiap card */
 .highlight-stack{
-  min-width:500px; /* 🔥 ini penting */
+  min-width:520px;
   flex-shrink:0;
-  scroll-snap-align:start;
+
+  scroll-snap-align:center; /* 🔥 bukan start */
+
+  transition:transform .3s, opacity .3s;
+}
+
+.highlight-stack{
+  opacity:.6;
+  transform:scale(.95);
+}
+
+.highlight-stack:hover{
+  opacity:1;
+  transform:scale(1);
 }
 
 /* LEFT TEXT */
