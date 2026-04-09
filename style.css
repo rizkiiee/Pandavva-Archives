@@ -251,8 +251,9 @@ main{
 /* RIGHT STACK */
 .highlight-cards{
   position:relative;
-  width:60%;
+  width:400px; /* FIXED */
   height:160px;
+  flex-shrink:0; /* 🔥 penting */
 }
 
 /* STACK CARD */
@@ -283,6 +284,15 @@ main{
   box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
+.highlight-text{
+  width:40%;
+  min-width:180px; /* biar gak ketekan */
+}
+
+.highlight-stack{
+  overflow:hidden;
+  max-width:100%;
+}
 
 /* =========================
    9. SCHEDULE
