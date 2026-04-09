@@ -83,14 +83,17 @@ main{
   display:flex;
   flex-direction:column;
   align-items:center;
+  overflow:hidden; 
   gap:16px;
 }
 
 .sidebar-mini img{
-  width:38px;
-  height:38px;
+  width:38px !important;
+  height:38px !important;
   border-radius:50%;
   cursor:pointer;
+  object-fit:cover;
+  flex-shrink:0;
 }
 
 .sidebar{
