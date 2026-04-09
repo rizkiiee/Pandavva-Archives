@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pandavva Hub</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="layout">
+
+<header class="topbar">
+  <button id="menuBtn">☰</button>
+  <h1 class="homeBtn leftTitle">PANDAVVA ARCHIVE</h1>
+</header>
+
+
+<!-- MINI SIDEBAR -->
+<aside class="sidebar-mini">
+
+<a href="index.html" class="homeIcon">🏠</a>
+
+<img src="https://unavatar.io/youtube/@PANDAVVA"
+onclick="goToMember('Pandavva Official')">
+
+<img src="https://unavatar.io/youtube/@Sadewa_Sagara"
+onclick="goToMember('Sadewa Sagara')">
+
+<img src="https://unavatar.io/youtube/@Nakula_Nalendra"
+onclick="goToMember('Nakula Nalendra')">
+
+<img src="https://unavatar.io/youtube/@Arjuna.Arkana"
+onclick="goToMember('Arjuna Arkana')">
+
+<img src="https://unavatar.io/youtube/@BimaBayusena"
+onclick="goToMember('Bima Bayusena')">
+
+<img src="https://unavatar.io/youtube/@YudistiraYogendra"
+onclick="goToMember('Yudistira Yogendra')">
+
+</aside>
+
+<!-- FULL SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+<a href="index.html" class="homeLink">
+  <span>🏠</span>
+  <span>Home</span>
+</a>
+
+<!-- MEMBERS -->
+<div class="channel" onclick="goToMember('Pandavva Official')">
+  <img src="https://unavatar.io/youtube/@PANDAVVA">
+  <span>Pandavva Official</span>
+</div>
+
+<div class="channel" onclick="goToMember('Sadewa Sagara')">
+  <img src="https://unavatar.io/youtube/@Sadewa_Sagara">
+  <span>Sadewa Sagara</span>
+</div>
+
+<div class="channel" onclick="goToMember('Nakula Nalendra')">
+  <img src="https://unavatar.io/youtube/@Nakula_Nalendra">
+  <span>Nakula Nalendra</span>
+</div>
+
+<div class="channel" onclick="goToMember('Arjuna Arkana')">
+  <img src="https://unavatar.io/youtube/@Arjuna.Arkana">
+  <span>Arjuna Arkana</span>
+</div>
+
+<div class="channel" onclick="goToMember('Bima Bayusena')">
+  <img src="https://unavatar.io/youtube/@BimaBayusena">
+  <span>Bima Bayusena</span>
+</div>
+
+<div class="channel" onclick="goToMember('Yudistira Yogendra')">
+  <img src="https://unavatar.io/youtube/@YudistiraYogendra">
+  <span>Yudistira Yogendra</span>
+</div>
+
+<!-- CATEGORIES -->
+<p style="opacity:.6; margin-top:20px;">Categories</p>
+
+<div class="channel" onclick="goToCategory('zatsudan')">
+  <span>🎤</span>
+  <span>Zatsudan</span>
+</div>
+
+<div class="channel" onclick="goToCategory('event')">
+  <span>🎉</span>
+  <span>Event</span>
+</div>
+
+<div class="channel" onclick="goToCategory('cover')">
+  <span>🎵</span>
+  <span>Cover</span>
+</div>
+
+<div class="channel" onclick="goToCategory('lore')">
+  <span>📝</span>
+  <span>Lore</span>
+</div>
+
+<div class="channel" onclick="goToCategory('jumavva')">
+  <span>🏆</span>
+  <span>Jumavva</span>
+</div>
+
+<div class="channel" onclick="goToCategory('guerilla')">
+  <span>✨</span>
+  <span>Guerilla</span>
+</div>
+
+<div class="channel" onclick="goToCategory('gaming')">
+  <span>🎮</span>
+  <span>Gaming</span>
+</div>
+
+<div class="channel" onclick="goToCategory('collaboration')">
+  <span>🙏</span>
+  <span>Collaboration</span>
+</div>
+
+</aside>
+
+<main>
+
+<section class="module">
+  <div class="disclaimer">
+    ⚠️ This is a fan-made archive site created to organize Pandavva content.
+    All rights belong to the official Pandavva channels. This site follows their content guidelines.
+  </div>
+</section>
+
+<section class="module">
+  <h2>Schedule</h2>
+  <h3 id="calendarMonth"></h3>
+  <div class="calendar-wrapper">
+  <button onclick="changeWeek(-1)">‹</button>
+  <div id="calendarMini" class="calendar-week"></div>
+  <button onclick="changeWeek(1)">›</button>
+  <div id="selectedDateEvents" class="selected-events"></div>
+</div>
+</section>
+
+<section class="module">
+<h2>Event</h2>
+<div id="highlightCarousel" class="highlight-row"></div>
+</section>
+  
+<section class="module">
+<h2>Upcoming</h2>
+<div id="upcomingGrid" class="grid"></div>
+</section>
+
+<section class="module">
+
+<h2>New</h2>
+
+<div id="homeGrid" class="grid"></div>
+
+<button class="moreBtn" onclick="location.href='media.html'">
+More
+</button>
+
+</section>
+
+<footer class="footer">
+  <p>
+  © Pandavva Archive (Fan Site)<br>
+  All content belongs to Pandavva Official.<br>
+  Thumbnails may belong to fans and original creators (e.g. Twitter).
+  </p>
+</footer>
+  
+</main>
+
+<script src="app.js"></script>
+
+</div>
+
+</body>
+
+</html>

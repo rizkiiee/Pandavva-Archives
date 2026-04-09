@@ -1,0 +1,606 @@
+const API =
+"https://opensheet.elk.sh/16IveyFW68vwyVHRIVH9MU0Jblh6HjUQ3PQU_QiE2C8c/videos"
+
+let videos=[]
+let currentWeekOffset = 0
+let selectedDate = null
+let minWeekOffset = -1
+let maxWeekOffset = 1
+let currentDate = new Date()
+let weekIndex = 0
+let weeks = []
+
+async function loadVideos(){
+  try{
+    const res = await fetch(API)
+    const data = await res.json()
+
+    videos = data
+    generateWeeks()
+    const today = new Date()
+    const todayStr =
+    today.getFullYear() + "-" +
+    String(today.getMonth()+1).padStart(2,"0") + "-" +
+    String(today.getDate()).padStart(2,"0")
+
+    selectedDate = todayStr
+    if(document.getElementById("highlightCarousel"))
+    renderHighlights()
+    
+    if(document.getElementById("calendarMini"))
+    renderCalendarMini()
+
+    renderSelectedEvents()
+    
+    if(document.getElementById("upcomingGrid"))
+    renderUpcoming()
+      
+    if(document.getElementById("categoryRow"))
+    renderCategories()
+
+    if(document.getElementById("homeGrid"))
+      renderHome()
+
+    if(document.getElementById("mediaGrid")){
+      const params = new URLSearchParams(window.location.search)
+      const cat = params.get("cat")
+    
+      if(cat){
+        const filtered = videos.filter(v => v.type === cat)
+        renderMedia(filtered)
+      }else{
+        renderMedia()
+      }
+      handleMemberPage()
+    }
+
+  if(document.getElementById("categoryGrid")){
+  const params = new URLSearchParams(window.location.search)
+  const cat = params.get("cat")
+
+  if(cat){
+
+    const titleEl = document.getElementById("categoryTitle")
+    if(titleEl) titleEl.innerText = cat
+
+    const filtered = videos.filter(v => 
+  v.type?.trim().toLowerCase() === cat.trim().toLowerCase()
+)
+
+    renderCategoryPage(filtered, cat)
+  }
+}
+
+  }catch(err){
+    console.error("ERROR FETCH:", err)
+  }
+}
+
+const channels = {
+
+"Pandavva Official": {
+avatar: "https://unavatar.io/youtube/@PANDAVVA",
+url: "https://youtube.com/@PANDAVVA"
+},
+
+"Sadewa Sagara": {
+avatar: "https://unavatar.io/youtube/@Sadewa_Sagara",
+url: "https://youtube.com/@sadewa_sagara"
+},
+
+"Nakula Nalendra": {
+avatar: "https://unavatar.io/youtube/@Nakula_Nalendra",
+url: "https://youtube.com/@Nakula_Nalendra"
+},
+
+"Arjuna Arkana": {
+avatar: "https://unavatar.io/youtube/@Arjuna.Arkana",
+url: "https://youtube.com/@Arjuna.Arkana"
+},
+
+"Bima Bayusena": {
+avatar: "https://unavatar.io/youtube/@BimaBayusena",
+url: "https://youtube.com/@BimaBayusena"
+},
+
+"Yudistira Yogendra": {
+avatar: "https://unavatar.io/youtube/@YudistiraYogendra",
+url: "https://youtube.com/@YudistiraYogendra"
+}
+
+}
+
+/* VIDEO CARD */
+function card(v){
+  const id = getVideoId(v.url)
+  const thumb = id
+    ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+    : ""
+
+  const ch =
+    Object.entries(channels)
+    .find(([name]) => v.channel && v.channel.includes(name))?.[1] || {}
+
+  const scheduleText = formatSchedule(v.schedule_date, v.time)
+
+  // 🔴 kalau ada URL → normal video
+  if(v.url){
+    return `
+    <a class="video" href="${v.url}" target="_blank">
+      <div class="thumb">
+        ${thumb ? `<img loading="lazy" src="${thumb}">` : ""}
+      </div>
+
+      <h3>${v.title || ""}</h3>
+
+      ${scheduleText ? `<p class="meta">${scheduleText}</p>` : ""}
+
+      <p class="channel">
+        ${ch.avatar ? `<img class="avatar" src="${ch.avatar}">` : ""}
+        <span>${v.channel || ""}</span>
+      </p>
+    </a>
+    `
+  }
+
+  // 🟡 kalau gak ada URL → card info
+  return `
+  <div class="video">
+    <div class="thumb" style="display:flex;align-items:center;justify-content:center;">
+      <span style="opacity:.6;">UPCOMING</span>
+    </div>
+
+    <h3>${v.title || ""}</h3>
+
+    ${scheduleText ? `<p class="meta">${scheduleText}</p>` : ""}
+
+    <p class="channel">
+      ${ch.avatar ? `<img class="avatar" src="${ch.avatar}">` : ""}
+      <span>${v.channel || ""}</span>
+    </p>
+  </div>
+  `
+}
+
+/* HOME GRID */
+function renderHome(){
+
+const grid=document.getElementById("homeGrid")
+
+const filtered =
+videos.filter(v=>v.duration)
+
+const sorted=[...filtered].sort((a,b)=>
+new Date(b.date) - new Date(a.date)
+)
+
+grid.innerHTML=
+sorted
+.slice(0,8)
+.map(card)
+.join("")
+
+}
+
+/* CATEGORY ROW */
+
+function renderCategories(){
+
+const row = document.getElementById("categoryRow")
+if(!row) return
+
+const cats = [...new Set(videos.map(v=>v.type))]
+
+if(row.classList.contains("category-scroll")){
+
+  row.innerHTML =
+    '<button onclick="renderMedia()">All</button>' +
+    cats.map(cat =>
+      `<button onclick="filterCat('${cat}')">${cat}</button>`
+    ).join("")
+
+  return
+}
+
+row.innerHTML = cats.map(cat => {
+
+const count = videos.filter(v=>v.type===cat).length
+
+return `
+<div class="categoryCard" onclick="goToCategory('${cat}')">
+
+<div class="catBox">
+<h3>${cat}</h3>
+<p>${count} videos</p>
+</div>
+
+</div>
+`
+
+}).join("")
+
+}
+
+function goToCategory(cat){
+  window.location.href = `category.html?cat=${encodeURIComponent(cat)}`
+}
+
+/*SCHEDULE*/
+function formatSchedule(date, time){
+  if(!date) return ""
+
+  const d = new Date(date)
+  const options = { day: "numeric", month: "short" }
+  const formattedDate = d.toLocaleDateString("id-ID", options)
+
+  return time 
+    ? `${formattedDate} • ${time}` 
+    : formattedDate
+}
+
+/*UPCCOMING*/
+function renderUpcoming(){
+  const upcoming = videos.filter(v => 
+    v.status === "upcoming" && v.url
+  )
+
+  const grid = document.getElementById("upcomingGrid")
+  if(!grid) return
+
+  grid.innerHTML = upcoming.map(card).join("")
+}
+
+function renderCategoryPage(list, cat){
+
+  const grid = document.getElementById("categoryGrid")
+
+  if(!grid) return
+
+  const sorted = [...list].sort((a,b)=>
+    new Date(b.date) - new Date(a.date)
+  )
+
+  grid.innerHTML = sorted.map(card).join("")
+}
+
+/*Media*/
+function renderMedia(list=videos, targetId="mediaGrid"){
+  const grid = document.getElementById(targetId)
+  if(!grid) return
+
+  const sorted = [...list].sort((a,b)=>
+    new Date(b.date) - new Date(a.date)
+  )
+
+  grid.innerHTML = sorted.map(card).join("")
+}
+
+/* FILTER */
+function filterCat(cat){
+
+const filtered =
+videos.filter(v=>v.type===cat)
+
+renderMedia(filtered)
+
+}
+
+/* SIDEBAR */
+document.addEventListener("DOMContentLoaded",()=>{
+
+const menuBtn = document.getElementById("menuBtn")
+const sidebar = document.getElementById("sidebar")
+
+if(menuBtn && sidebar){
+
+menuBtn.addEventListener("click",()=>{
+sidebar.classList.toggle("open")
+})
+
+document.addEventListener("click",(e)=>{
+if(
+sidebar.classList.contains("open") &&
+!sidebar.contains(e.target) &&
+!menuBtn.contains(e.target)
+){
+sidebar.classList.remove("open")
+}
+})
+
+}
+
+})
+
+/*thumbnail*/
+function getVideoId(url){
+
+if(!url) return null
+
+const reg =
+/(?:youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/)|youtu\.be\/)([^?&]+)/
+
+const match = url.match(reg)
+
+return match ? match[1] : null
+
+}
+
+/*home button*/
+const homeBtn = document.querySelector(".homeBtn")
+
+if(homeBtn){
+
+homeBtn.onclick = () => {
+
+window.location.href = "index.html"
+
+}
+
+}
+
+function goToMember(name){
+  window.location.href = `member.html?member=${encodeURIComponent(name)}`
+}
+
+function handleMemberPage(){
+  const params = new URLSearchParams(window.location.search)
+  const member = params.get("member")
+
+  if(member && document.getElementById("memberGrid")){
+    const filtered = videos.filter(v =>
+      v.channel && v.channel.includes(member)
+    )
+
+    document.getElementById("memberTitle").innerText = member
+
+    const grid = document.getElementById("memberGrid")
+
+    const sorted = [...filtered].sort((a,b)=>
+      new Date(b.date) - new Date(a.date)
+    )
+
+    grid.innerHTML = sorted.map(card).join("")
+  }
+}
+
+function generateWeeks(){
+  const base = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
+
+  // cari senin pertama sebelum/di bulan ini
+  const start = new Date(base)
+  const day = start.getDay()
+  const diff = (day === 0 ? -6 : 1) - day
+  start.setDate(start.getDate() + diff)
+
+  weeks = []
+
+  for(let w=0; w<6; w++){
+    const week = []
+
+    for(let d=0; d<7; d++){
+      const date = new Date(start)
+      date.setDate(start.getDate() + w*7 + d)
+      week.push(date)
+    }
+
+    weeks.push(week)
+  }
+
+  // 👉 default: cari minggu yang ada hari ini
+  const todayStr = new Date().toDateString()
+
+  const foundIndex = weeks.findIndex(week =>
+    week.some(d => d.toDateString() === todayStr)
+  )
+
+  weekIndex = foundIndex !== -1 ? foundIndex : 0
+}
+
+/*SCHEDULE*/
+function renderCalendarMini(){
+  const container = document.getElementById("calendarMini")
+if(!container) return
+
+const week = weeks[weekIndex]
+
+const currentMonth = currentDate.getMonth()
+
+// 🔥 SET BULAN
+const monthEl = document.getElementById("calendarMonth")
+if(monthEl){
+  monthEl.innerText = currentDate.toLocaleDateString("id-ID", {
+    month:"long",
+    year:"numeric"
+  })
+}
+
+const days = week.map(d => {
+
+  const dateStr =
+    d.getFullYear() + "-" +
+    String(d.getMonth()+1).padStart(2,"0") + "-" +
+    String(d.getDate()).padStart(2,"0")
+
+  const isToday =
+    d.toDateString() === new Date().toDateString()
+
+  const isOtherMonth =
+    d.getMonth() !== currentMonth
+
+  const events = videos.filter(v =>
+    v.schedule_date && v.schedule_date.trim() === dateStr
+  )
+
+  const avatars = events.slice(0,2).map(v => {
+
+  const name = v.member?.toLowerCase().trim()
+
+  const foundKey = Object.keys(channels).find(key =>
+    name && name.includes(key.toLowerCase())
+  )
+
+  return foundKey
+    ? `<img src="${channels[foundKey].avatar}">`
+    : `<div style="width:20px;height:20px;background:red;border-radius:50%"></div>`
+
+  }).join("")
+
+  const more = events.length > 2
+  ? `<span class="more">+${events.length - 2}</span>`
+  : ""
+
+  return `
+  <div class="calendar-day ${isOtherMonth ? "other-month" : ""} ${isToday ? "active" : ""} ${selectedDate === dateStr ? "selected" : ""}"
+       onclick="selectDate(event, '${dateStr}')">
+
+    <h4>${d.toLocaleDateString("id-ID",{weekday:"short"})}</h4>
+    <span>${d.getDate()}</span>
+
+    <div class="calendar-avatars">
+      ${avatars}
+      ${more}
+    </div>
+
+  </div>
+  `
+})
+
+container.innerHTML = days.join("")
+  const prevBtn = document.querySelector(".calendar-wrapper button:first-child")
+  const nextBtn = document.querySelector(".calendar-wrapper button:last-child")
+  if(prevBtn){
+  prevBtn.disabled = currentWeekOffset <= minWeekOffset
+  }
+
+if(nextBtn){
+  nextBtn.disabled = currentWeekOffset >= maxWeekOffset
+  }
+}
+
+function renderSelectedEvents(){
+  const container = document.getElementById("selectedDateEvents")
+  if(!container || !selectedDate) return
+
+  const events = videos.filter(v => 
+    v.schedule_date && v.schedule_date.trim() === selectedDate
+  )
+
+  if(events.length === 0){
+    container.innerHTML = `<p style="opacity:.6">No events</p>`
+    return
+  }
+
+  container.innerHTML = events.map(v => {
+
+  return `
+  <div class="event-card">
+    
+    <div class="event-time">
+      ${v.time || "--:--"}
+    </div>
+
+    <div class="event-info">
+      <h4>${v.title || ""}</h4>
+      <p>${v.member || ""}
+      </p>
+    </div>
+
+    ${
+      v.url 
+      ? `<a href="${v.url}" target="_blank" class="event-link">▶</a>` 
+      : ""
+    }
+
+  </div>
+  `
+
+}).join("")
+
+} // ✅ INI YANG KAMU KURANGIN
+
+function selectDate(e, date){
+  e.stopPropagation()
+
+  selectedDate = date
+
+  renderCalendarMini()
+  renderSelectedEvents()
+
+  const el = document.getElementById("selectedDateEvents")
+  if(el){
+    el.scrollIntoView({ behavior:"smooth", block:"nearest" })
+  }
+}
+
+/*BUTTON CALENDER*/
+function changeWeek(offset){
+  const next = weekIndex + offset
+
+  if(next < 0 || next >= weeks.length) return
+
+  weekIndex = next
+  renderCalendarMini()
+}
+
+document.addEventListener("click", (e) => {
+  const events = document.getElementById("selectedDateEvents")
+
+  if(!events) return
+
+  if(
+  !e.target.closest("#calendarMini") &&
+  !e.target.closest("#selectedDateEvents")
+  ){
+    selectedDate = null
+    events.innerHTML = ""
+    renderCalendarMini()
+  }
+})
+
+/*HIGHLIGHT*/
+function getHighlights(){
+  const groups = {}
+
+  videos.forEach(v => {
+    const key = v.highlight?.toLowerCase().trim()
+    if(!key) return
+
+    if(!groups[key]){
+      groups[key] = []
+    }
+
+    groups[key].push(v)
+  })
+
+  return groups
+}
+
+function renderHighlights(){
+  const container = document.getElementById("highlightCarousel")
+  if(!container) return
+
+  const groups = getHighlights()
+
+  container.innerHTML = Object.keys(groups).map(key => {
+
+    const vids = groups[key]
+    const first = vids[0]
+
+    const id = getVideoId(first.url)
+    const thumb = id
+      ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+      : ""
+
+    return `
+      <div class="highlight-card">
+        ${thumb ? `<img src="${thumb}">` : ""}
+        <h3>${key}</h3>
+        <p>${vids.length} videos</p>
+      </div>
+    `
+  }).join("")
+}
+
+console.log("HIGHLIGHTS:", getHighlights())
+
+loadVideos()

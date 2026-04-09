@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Categories</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+  <button id="menuBtn">☰</button>
+  <h1 class="leftTitle" id="categoryTitle">Categories</h1>
+</header>
+
+<aside class="sidebar-mini">
+
+<a href="index.html" class="homeIcon">🏠</a>
+
+<img src="https://unavatar.io/youtube/@PANDAVVA">
+<img src="https://unavatar.io/youtube/@Sadewa_Sagara">
+<img src="https://unavatar.io/youtube/@Nakula_Nalendra">
+<img src="https://unavatar.io/youtube/@Arjuna.Arkana">
+<img src="https://unavatar.io/youtube/@BimaBayusena">
+<img src="https://unavatar.io/youtube/@YudistiraYogendra">
+
+</aside>
+
+<aside class="sidebar" id="sidebar">
+
+<a href="index.html" class="homeLink">
+<span>🏠</span>
+<span>Home</span>
+</a>
+
+<div class="channel">
+<img src="https://unavatar.io/youtube/@PANDAVVA">
+<span>Pandavva Official</span>
+</div>
+
+<div class="channel">
+<img src="https://unavatar.io/youtube/@Sadewa_Sagara">
+<span>Sadewa Sagara</span>
+</div>
+
+<div class="channel">
+<img src="https://unavatar.io/youtube/@Nakula_Nalendra">
+<span>Nakula Nalendra</span>
+</div>
+
+<div class="channel">
+<img src="https://unavatar.io/youtube/@Arjuna.Arkana">
+<span>Arjuna Arkana</span>
+</div>
+
+<div class="channel">
+<img src="https://unavatar.io/youtube/@BimaBayusena">
+<span>Bima Bayusena</span>
+</div>
+
+<div class="channel">
+<img src="https://unavatar.io/youtube/@YudistiraYogendra">
+<span>Yudistira Yogendra</span>
+</div>
+
+<p style="opacity:.6; margin-top:20px;">Categories</p>
+
+<div class="channel" onclick="goToCategory('zatsudan')">
+<span>🎤</span>
+<span>Zatsudan</span>
+</div>
+
+<div class="channel" onclick="goToCategory('event')">
+<span>🎉</span>
+<span>Event</span>
+</div>
+
+<div class="channel" onclick="goToCategory('cover')">
+<span>🎵</span>
+<span>Cover</span>
+</div>
+
+</aside>
+
+<main>
+
+<div id="categoryGrid" class="grid"></div>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html>
