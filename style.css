@@ -1083,3 +1083,13 @@ box-sizing:border-box;
     position:static;
   }
 }
+
+.highlight-row{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:14px;
+}
+
+.highlight-card:first-child{
+  grid-row: span 2;
+}
