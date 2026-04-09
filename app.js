@@ -592,8 +592,8 @@ function renderHighlights(){
 
             return `
               <div class="stack-card" style="--i:${i}">
-                <img src="${thumb}">
-              </div>
+              ${thumb ? `<img src="${thumb}">` : ""}
+            </div>
             `
           }).join("")}
         </div>
