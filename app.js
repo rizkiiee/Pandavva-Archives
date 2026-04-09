@@ -584,18 +584,26 @@ function renderHighlights(){
   container.innerHTML = Object.keys(groups).map(key => {
 
     const vids = groups[key]
-    const first = vids[0]
-
-    const id = getVideoId(first.url)
-    const thumb = id
-      ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
-      : ""
 
     return `
-      <div class="highlight-card">
-        ${thumb ? `<img src="${thumb}">` : ""}
-        <h3>${key}</h3>
-        <p>${vids.length} videos</p>
+      <div class="highlight-card" onclick="goToHighlight('${key}')">
+
+        <div class="highlight-mosaic">
+          ${vids.slice(0,4).map(v => {
+            const id = getVideoId(v.url)
+            const thumb = id
+              ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+              : ""
+
+            return `<img src="${thumb}">`
+          }).join("")}
+        </div>
+
+        <div class="highlight-info">
+          <h3>${key}</h3>
+          <p>${vids.length} videos</p>
+        </div>
+
       </div>
     `
   }).join("")
