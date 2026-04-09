@@ -235,9 +235,7 @@ margin-bottom:12px;
 
 /* VIDEO GRID */
 .grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
+  grid-template-columns:repeat(auto-fill, minmax(240px,1fr));
 }
 
 @media(max-width:900px){
@@ -790,15 +788,14 @@ box-sizing:border-box;
 }
 
 .calendar-day{
-  min-width:80px;
+  width:55px;
   background:#1a1a1d;
-  border-radius:12px;
-  padding:10px;
+  padding:8px;
   text-align:center;
 }
 
 .calendar-day h4{
-  font-size:13px;
+  font-size:12px;
   margin:0 0 6px;
   opacity:.8;
 }
@@ -810,8 +807,8 @@ box-sizing:border-box;
 }
 
 .calendar-avatars img{
-  width:24px;
-  height:24px;
+  width:14px;
+  height:14px;
   border-radius:50%;
 }
 
@@ -1092,4 +1089,21 @@ box-sizing:border-box;
 
 .highlight-card:first-child{
   grid-row: span 2;
+}
+
+.video h3{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.video{
+  height:220px;
+  display:flex;
+  flex-direction:column;
+}
+
+.home-right{
+  max-width:320px;
 }
