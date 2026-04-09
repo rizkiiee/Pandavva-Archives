@@ -126,8 +126,8 @@ onclick="goToMember('Yudistira Yogendra')">
 
 </aside>
 
-<main>
-
+<main class="home-layout">
+  
 <section class="module">
   <div class="disclaimer">
     ⚠️ This is a fan-made archive site created to organize Pandavva content.
@@ -135,38 +135,52 @@ onclick="goToMember('Yudistira Yogendra')">
   </div>
 </section>
 
-<section class="module">
-  <h2>Schedule</h2>
-  <h3 id="calendarMonth"></h3>
-  <div class="calendar-wrapper">
-  <button onclick="changeWeek(-1)">‹</button>
-  <div id="calendarMini" class="calendar-week"></div>
-  <button onclick="changeWeek(1)">›</button>
-  <div id="selectedDateEvents" class="selected-events"></div>
-</div>
-</section>
+<main class="home-layout">
 
-<section class="module">
-<h2>Event</h2>
-<div id="highlightCarousel" class="highlight-row"></div>
-</section>
-  
-<section class="module">
-<h2>Upcoming</h2>
-<div id="upcomingGrid" class="grid"></div>
-</section>
+  <!-- LEFT -->
+  <div class="home-left">
 
-<section class="module">
+    <!-- highlight -->
+    <section class="module">
+      <h2>Event</h2>
+      <div id="highlightCarousel" class="highlight-row"></div>
+    </section>
 
-<h2>New</h2>
+    <!-- upcoming -->
+    <section class="module">
+      <h2>Upcoming</h2>
+      <div id="upcomingGrid" class="grid"></div>
+    </section>
 
-<div id="homeGrid" class="grid"></div>
+    <!-- media -->
+    <section class="module">
+      <h2>New</h2>
+      <div id="homeGrid" class="grid"></div>
 
-<button class="moreBtn" onclick="location.href='media.html'">
-More
-</button>
+      <button class="moreBtn" onclick="location.href='media.html'">
+        More
+      </button>
+    </section>
 
-</section>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="home-right">
+
+    <section class="module">
+      <h2>Schedule</h2>
+      <h3 id="calendarMonth"></h3>
+
+      <div class="calendar-wrapper">
+        <button onclick="changeWeek(-1)">‹</button>
+        <div id="calendarMini" class="calendar-week"></div>
+        <button onclick="changeWeek(1)">›</button>
+      </div>
+
+      <div id="selectedDateEvents" class="selected-events"></div>
+    </section>
+
+  </div>
 
 <footer class="footer">
   <p>
