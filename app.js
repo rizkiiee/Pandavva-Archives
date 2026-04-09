@@ -620,46 +620,6 @@ function getHighlights(){
   return groups
 }
 
-container.innerHTML = Object.keys(groups).map(key => {
-
-  const vids = groups[key]
-
-  // 🔥 SORT: lama → baru
-  const sorted = vids.sort((a,b)=>
-    new Date(a.date) - new Date(b.date)
-  )
-
-  const top4 = sorted.slice(-4) // ambil max 4 terakhir
-
-  return `
-    <div class="highlight-stack" onclick="goToHighlight('${key}')">
-
-      <!-- LEFT TEXT -->
-      <div class="highlight-text">
-        <h3>${key}</h3>
-        <p>${vids.length} videos</p>
-      </div>
-
-      <!-- RIGHT STACK -->
-      <div class="highlight-cards">
-        ${top4.map((v,i) => {
-          const id = getVideoId(v.url)
-          const thumb = id
-            ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
-            : ""
-
-          return `
-            <div class="stack-card" style="--i:${i}">
-              <img src="${thumb}">
-            </div>
-          `
-        }).join("")}
-      </div>
-
-    </div>
-  `
-}).join("")
-
 function goToHighlight(key){
   window.location.href = `highlight.html?highlight=${encodeURIComponent(key)}`
 }
