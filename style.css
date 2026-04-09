@@ -235,7 +235,9 @@ margin-bottom:12px;
 
 /* VIDEO GRID */
 .grid{
+  display:grid;
   grid-template-columns:repeat(auto-fill, minmax(240px,1fr));
+  gap:12px;
 }
 
 @media(max-width:900px){
@@ -833,15 +835,6 @@ box-sizing:border-box;
   gap:10px;
 }
 
-.calendar-day{
-  width:70px;
-  padding:10px;
-  border-radius:12px;
-  background:#1a1a1d;
-  text-align:center;
-  cursor:pointer;
-}
-
 .calendar-day.active{
   background:#6c5ce7;
 }
@@ -1003,11 +996,6 @@ box-sizing:border-box;
 }
 
 /*HIGHLIGHT*/
-.highlight-row{
-  display:flex;
-  gap:14px;
-  overflow-x:auto;
-}
 
 .highlight-card{
   min-width:180px;
@@ -1030,10 +1018,11 @@ box-sizing:border-box;
 }
 
 .highlight-mosaic img{
-  width:100%;
-  height:60px;
-  object-fit:cover;
-  border-radius:6px;
+  height:80px;
+}
+
+.highlight-card:first-child .highlight-mosaic img{
+  height:120px;
 }
 
 .highlight-info h3{
@@ -1089,6 +1078,16 @@ box-sizing:border-box;
 
 .highlight-card:first-child{
   grid-row: span 2;
+}
+
+.highlight-card{
+  width:100%;
+  height:100%;
+}
+
+.highlight-card:first-child{
+  grid-row: span 2;
+  min-height:260px;
 }
 
 .video h3{
