@@ -585,10 +585,12 @@ function renderHighlights(){
 
         <div class="highlight-cards">
           ${top4.map((v,i) => {
-            const id = getVideoId(v.url)
+            const latest = vids[vids.length - 1] // ambil yang terbaru
+            const id = getVideoId(latest.url)
+
             const thumb = id
-              ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
-              : ""
+            ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
+            : ""
 
             return `
               <div class="stack-card" style="--i:${i}">
