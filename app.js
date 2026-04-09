@@ -562,36 +562,28 @@ function renderHighlights(){
 
     const vids = groups[key]
 
-    // SORT lama → baru
-    const sorted = [...vids].sort((a,b)=>
-      new Date(a.date) - new Date(b.date)
-    )
+    // ambil video terbaru
+    const latest = vids.sort((a,b)=>
+      new Date(b.date) - new Date(a.date)
+    )[0]
 
-    const top4 = sorted.slice(-4)
+    const id = getVideoId(latest.url)
+
+    const thumb = id
+      ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
+      : ""
 
     return `
-      <div class="highlight-stack" onclick="goToHighlight('${key}')">
+      <div class="highlight-card" onclick="goToHighlight('${key}')">
 
-        <div class="highlight-text">
+        <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
+
+        <div class="highlight-overlay"></div>
+
+        <div class="highlight-content">
           <h3>${key}</h3>
           <p>${vids.length} videos</p>
-        </div>
-
-        <div class="highlight-cards">
-          ${top4.map((v,i) => {
-            const latest = vids[vids.length - 1] // ambil yang terbaru
-            const id = getVideoId(latest.url)
-
-            const thumb = id
-            ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
-            : ""
-
-            return `
-              <div class="stack-card" style="--i:${i}">
-              ${thumb ? `<img src="${thumb}">` : ""}
-            </div>
-            `
-          }).join("")}
+          <span class="highlight-desc">Deskripsi kamu di sini</span>
         </div>
 
       </div>
