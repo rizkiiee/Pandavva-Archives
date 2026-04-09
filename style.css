@@ -251,106 +251,70 @@ main{
 
 /* ===== STACK HIGHLIGHT ===== */
 
-.highlight-wrapper{
-  width:100%;
-  overflow:hidden;
+.highlight-card{
   position:relative;
+  min-width:600px;
+  height:240px;
+
+  border-radius:20px;
+  overflow:hidden;
+
+  flex-shrink:0;
 }
 
-.highlight-wrapper{
-  padding:0 120px; /* 🔥 bikin card samping keliatan */
+/* BACKGROUND IMAGE */
+.highlight-bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(.6);
+}
+
+/* DARK OVERLAY */
+.highlight-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.2)
+  );
+}
+
+/* TEXT CONTENT */
+.highlight-content{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+
+  z-index:2;
+}
+
+.highlight-content h3{
+  font-size:22px;
+  margin:0 0 6px;
+}
+
+.highlight-content p{
+  font-size:13px;
+  opacity:.8;
+}
+
+.highlight-desc{
+  font-size:12px;
+  opacity:.7;
 }
 
 .highlight-row{
   display:flex;
   gap:20px;
-
   overflow-x:auto;
   scroll-snap-type:x mandatory;
-
-  padding:10px 0;
-
-  justify-content:center; /* 🔥 INI KUNCI */
 }
 
-.highlight-stack{
-  min-width:520px;
-  flex-shrink:0;
-
-  scroll-snap-align:center; /* 🔥 bukan start */
-
-  transition:transform .3s, opacity .3s;
-}
-
-.highlight-stack{
-  opacity:.6;
-  transform:scale(.95);
-}
-
-.highlight-stack:hover{
-  opacity:1;
-  transform:scale(1);
-}
-
-/* LEFT TEXT */
-.highlight-text{
-  width:40%;
-}
-
-.highlight-text h3{
-  font-size:20px;
-  margin:0 0 6px;
-}
-
-.highlight-text p{
-  font-size:13px;
-  opacity:.7;
-}
-
-/* RIGHT STACK */
-.highlight-cards{
-  position:relative;
-  width:400px; /* FIXED */
-  height:160px;
-  flex-shrink:0; /* 🔥 penting */
-}
-
-/* STACK CARD */
-.stack-card{
-  position:absolute;
-  top:0;
-  right:0;
-
-  width:220px;
-  height:140px;
-
-  border-radius:16px;
-  overflow:hidden;
-
-  transform:translateX(calc(var(--i) * -40px))
-            scale(calc(1 - var(--i) * 0.05));
-
-  z-index:calc(10 - var(--i));
-}
-
-.stack-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.stack-card:nth-child(1){
-  box-shadow:0 10px 30px rgba(0,0,0,0.6);
-}
-
-.highlight-text{
-  width:40%;
-  min-width:180px; /* biar gak ketekan */
-}
-
-.highlight-stack{
-  overflow:hidden;
-  max-width:100%;
+.highlight-card{
+  scroll-snap-align:center;
 }
 
 /* =========================
