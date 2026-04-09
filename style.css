@@ -28,16 +28,10 @@ a{
 
 main{
   flex:1;
-  padding:80px 20px 20px;
-  margin-left:70px;
-  max-width:1400px;
-}
-
-main{
-  flex:1;
   padding-top:80px;
   padding-left:90px;
   padding-right:20px;
+  margin-left:70px; /* 🔥 BALIKIN INI */
 }
 
 .home-layout{
@@ -59,7 +53,7 @@ main{
 
   padding-left:60px;
   background:#111;
-  z-index:100;
+  z-index:1100;
 }
 
 .leftTitle{
@@ -95,6 +89,7 @@ main{
   align-items:center;
   overflow:hidden; 
   gap:16px;
+  z-index:1000;
 }
 
 .sidebar-mini img{
