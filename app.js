@@ -575,39 +575,45 @@ function getHighlights(){
   return groups
 }
 
-function renderHighlights(){
-  const container = document.getElementById("highlightCarousel")
-  if(!container) return
+container.innerHTML = Object.keys(groups).map(key => {
 
-  const groups = getHighlights()
+  const vids = groups[key]
 
-  container.innerHTML = Object.keys(groups).map(key => {
+  // 🔥 SORT: lama → baru
+  const sorted = vids.sort((a,b)=>
+    new Date(a.date) - new Date(b.date)
+  )
 
-    const vids = groups[key]
+  const top4 = sorted.slice(-4) // ambil max 4 terakhir
 
-    return `
-      <div class="highlight-card" onclick="goToHighlight('${key}')">
+  return `
+    <div class="highlight-stack" onclick="goToHighlight('${key}')">
 
-        <div class="highlight-mosaic">
-          ${vids.slice(0,4).map(v => {
-            const id = getVideoId(v.url)
-            const thumb = id
-              ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
-              : ""
-
-            return `<img src="${thumb}">`
-          }).join("")}
-        </div>
-
-        <div class="highlight-info">
-          <h3>${key}</h3>
-          <p>${vids.length} videos</p>
-        </div>
-
+      <!-- LEFT TEXT -->
+      <div class="highlight-text">
+        <h3>${key}</h3>
+        <p>${vids.length} videos</p>
       </div>
-    `
-  }).join("")
-}
+
+      <!-- RIGHT STACK -->
+      <div class="highlight-cards">
+        ${top4.map((v,i) => {
+          const id = getVideoId(v.url)
+          const thumb = id
+            ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+            : ""
+
+          return `
+            <div class="stack-card" style="--i:${i}">
+              <img src="${thumb}">
+            </div>
+          `
+        }).join("")}
+      </div>
+
+    </div>
+  `
+}).join("")
 
 function goToHighlight(key){
   window.location.href = `highlight.html?highlight=${encodeURIComponent(key)}`
