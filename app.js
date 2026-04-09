@@ -493,26 +493,20 @@ function renderSelectedEvents(){
   container.innerHTML = events.map(v => {
 
   return `
-  <div class="event-card">
-    
-    <div class="event-time">
-      ${v.time || "--:--"}
-    </div>
+  <div class="highlight-card">
 
-    <div class="event-info">
-      <h4>${v.title || ""}</h4>
-      <p>${v.member || ""}
-      </p>
-    </div>
+    <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
 
-    ${
-      v.url 
-      ? `<a href="${v.url}" target="_blank" class="event-link">▶</a>` 
-      : ""
-    }
+    <div class="highlight-overlay"></div>
+
+    <div class="highlight-content">
+      <h3>${key}</h3>
+      <p>${vids.length} videos</p>
+      <span class="highlight-desc">Deskripsi kamu di sini</span>
+    </div>
 
   </div>
-  `
+`
 
 }).join("")
 
