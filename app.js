@@ -609,6 +609,10 @@ function renderHighlights(){
   }).join("")
 }
 
+function goToHighlight(key){
+  window.location.href = `highlight.html?highlight=${encodeURIComponent(key)}`
+}
+
 console.log("HIGHLIGHTS:", getHighlights())
 
 loadVideos()
