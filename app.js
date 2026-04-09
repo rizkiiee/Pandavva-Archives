@@ -558,6 +558,51 @@ document.addEventListener("click", (e) => {
 })
 
 /*HIGHLIGHT*/
+function renderHighlights(){
+  const container = document.getElementById("highlightCarousel")
+  if(!container) return
+
+  const groups = getHighlights()
+
+  container.innerHTML = Object.keys(groups).map(key => {
+
+    const vids = groups[key]
+
+    // SORT lama → baru
+    const sorted = [...vids].sort((a,b)=>
+      new Date(a.date) - new Date(b.date)
+    )
+
+    const top4 = sorted.slice(-4)
+
+    return `
+      <div class="highlight-stack" onclick="goToHighlight('${key}')">
+
+        <div class="highlight-text">
+          <h3>${key}</h3>
+          <p>${vids.length} videos</p>
+        </div>
+
+        <div class="highlight-cards">
+          ${top4.map((v,i) => {
+            const id = getVideoId(v.url)
+            const thumb = id
+              ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+              : ""
+
+            return `
+              <div class="stack-card" style="--i:${i}">
+                <img src="${thumb}">
+              </div>
+            `
+          }).join("")}
+        </div>
+
+      </div>
+    `
+  }).join("")
+}
+
 function getHighlights(){
   const groups = {}
 
