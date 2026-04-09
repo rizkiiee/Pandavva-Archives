@@ -1048,3 +1048,38 @@ box-sizing:border-box;
   font-size:11px;
   opacity:.7;
 }
+
+/* ===== HOME 2 COLUMN LAYOUT ===== */
+
+.home-layout{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:20px;
+  align-items:start;
+}
+
+.home-left{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.home-right{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+
+  position:sticky;
+  top:80px;
+}
+
+/* MOBILE */
+@media (max-width:900px){
+  .home-layout{
+    grid-template-columns:1fr;
+  }
+
+  .home-right{
+    position:static;
+  }
+}
