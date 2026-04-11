@@ -383,12 +383,6 @@ main{
   background:#6c5ce7;
 }
 
-.calendar-avatars img{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-}
-
 .selected-events{
   display:flex;
   gap:10px;
@@ -404,6 +398,37 @@ main{
   height:60px;
 }
 
+.day-number{
+  font-size:14px;
+  font-weight:600;
+}
+
+.calendar-dots{
+  display:flex;
+  gap:4px;
+  margin-top:4px;
+  justify-content:center;
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+}
+
+.dot.yudistira{ background:#22c55e; }
+.dot.bima{ background:#ef4444; }
+.dot.arjuna{ background:#3b82f6; }
+.dot.nakula{ background:#eab308; }
+.dot.sadewa{ background:#a855f7; }
+
+.calendar-day{
+  height:50px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
 
 /* =========================
    10. RESPONSIVE
