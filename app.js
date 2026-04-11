@@ -17,7 +17,6 @@ async function loadVideos(){
 
     videos = data
     generateWeeks()
-    weekIndex = foundIndex !== -1 ? foundIndex : 0
     const today = new Date()
     const todayStr =
     today.getFullYear() + "-" +
