@@ -29,15 +29,14 @@ a{
 main{
   flex:1;
   padding-top:80px;
-  padding-left:90px;
+  padding-left:20px; /* 🔥 kecilin */
   padding-right:20px;
-  margin-left:70px; /* 🔥 BALIKIN INI */
+  margin-left:70px; /* cukup ini aja */
 }
 
 .home-layout{
   width:100%;
-  max-width:1400px; /* boleh 1400 / 1500 */
-  margin:0 auto;
+  max-width:none; /* boleh 1400 / 1500 */
 }
 
 /* =========================
@@ -170,8 +169,8 @@ main{
 ========================= */
 .home-layout{
   display:grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap:24px;
+  grid-template-columns: 2.5fr 1fr; /* 🔥 ini game changer */
+  gap:20px;
 }
 
 .home-left{
@@ -183,7 +182,7 @@ main{
 
 .home-right{
   width:100%;
-  max-width:280px;
+  max-width:360px;
   display:flex;
   flex-direction:column;
   gap:20px;
@@ -197,7 +196,7 @@ main{
 ========================= */
 .grid{
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap:20px;
 }
 
