@@ -439,30 +439,37 @@ const days = week.map(d => {
     name && name.includes(key.toLowerCase())
   )
 
-  return foundKey
-    ? `<img src="${channels[foundKey].avatar}">`
-    : `<div style="width:20px;height:20px;background:red;border-radius:50%"></div>`
+const dots = events.slice(0,3).map(v => {
 
-  }).join("")
+  const name = v.member?.toLowerCase().trim()
+
+  if(name?.includes("yudistira")) return `<span class="dot yudistira"></span>`
+  if(name?.includes("bima")) return `<span class="dot bima"></span>`
+  if(name?.includes("arjuna")) return `<span class="dot arjuna"></span>`
+  if(name?.includes("nakula")) return `<span class="dot nakula"></span>`
+  if(name?.includes("sadewa")) return `<span class="dot sadewa"></span>`
+
+  return `<span class="dot"></span>`
+
+}).join("")
 
   const more = events.length > 2
   ? `<span class="more">+${events.length - 2}</span>`
   : ""
 
-  return `
-  <div class="calendar-day ${isOtherMonth ? "other-month" : ""} ${isToday ? "active" : ""} ${selectedDate === dateStr ? "selected" : ""}"
-       onclick="selectDate(event, '${dateStr}')">
+return `
+<div class="calendar-day ${isOtherMonth ? "other-month" : ""} ${isToday ? "active" : ""} ${selectedDate === dateStr ? "selected" : ""}"
+     onclick="selectDate(event, '${dateStr}')">
 
-    <h4>${d.toLocaleDateString("id-ID",{weekday:"short"})}</h4>
-    <span>${d.getDate()}</span>
+  <span class="day-number">${d.getDate()}</span>
 
-    <div class="calendar-avatars">
-      ${avatars}
-      ${more}
-    </div>
-
+  <div class="calendar-dots">
+    ${dots}
+    ${more}
   </div>
-  `
+
+</div>
+`
 })
 
 container.innerHTML = days.join("")
