@@ -614,4 +614,9 @@ function goToHighlight(key){
 
 console.log("HIGHLIGHTS:", getHighlights())
 
+function renderDots(total){
+  const dots = document.querySelector(".highlight-dots")
+  dots.innerHTML = Array(total).fill(0).map(()=>`<span></span>`).join("")
+}
+
 loadVideos()
