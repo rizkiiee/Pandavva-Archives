@@ -431,14 +431,6 @@ const days = week.map(d => {
     v.schedule_date && v.schedule_date.trim() === dateStr
   )
 
-  const avatars = events.slice(0,2).map(v => {
-
-  const name = v.member?.toLowerCase().trim()
-
-  const foundKey = Object.keys(channels).find(key =>
-    name && name.includes(key.toLowerCase())
-  )
-
 const dots = events.slice(0,3).map(v => {
 
   const name = v.member?.toLowerCase().trim()
