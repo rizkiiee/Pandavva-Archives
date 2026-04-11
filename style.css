@@ -362,9 +362,9 @@ main{
 }
 
 .calendar-week{
-  display:grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap:8px;
+  display:flex;
+  gap:4px;
+  width:100%;
 }
 
 .calendar-day{
@@ -374,6 +374,7 @@ main{
   border-radius:12px;
   text-align:center;
   cursor:pointer;
+  flex:1;
 
   height:52px;
   display:flex;
