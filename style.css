@@ -169,7 +169,7 @@ main{
 ========================= */
 .home-layout{
   display:grid;
-  grid-template-columns: 2.5fr 1fr; /* 🔥 ini game changer */
+  grid-template-columns: 2.2fr 1.2fr; /* 🔥 ini game changer */
   gap:20px;
 }
 
@@ -182,7 +182,7 @@ main{
 
 .home-right{
   width:100%;
-  max-width:360px;
+  max-width:none;
   display:flex;
   flex-direction:column;
   gap:20px;
@@ -190,6 +190,9 @@ main{
   top:80px;
 }
 
+.home-right{
+  background:red;
+}
 
 /* =========================
    6. GRID (VIDEO)
@@ -355,7 +358,7 @@ main{
   align-items:center;
   gap:10px;
   width:100%;
-  overflow:hidden; /* 🔥 penting */
+  overflow:visible; /* 🔥 penting */
 }
 
 .calendar-week{
@@ -365,14 +368,14 @@ main{
 }
 
 .calendar-day{
-  width:100%;
+  width:70px;
   padding:6px;
   background:#1a1a1d;
-  border-radius:10px;
+  border-radius:14px;
   text-align:center;
   cursor:pointer;
 
-  height:50px;
+  height:65px;
   display:flex;
   flex-direction:column;
   align-items:center;
