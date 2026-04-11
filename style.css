@@ -252,11 +252,13 @@ main{
 /* ===== STACK HIGHLIGHT ===== */
 
 .highlight-card{
-  min-width:100%; /* 🔥 cuma 1 yang keliatan */
-  max-width:100%;
-
+  min-width:100%;
+  height:260px; /* 🔥 WAJIB ADA */
   flex-shrink:0;
-  scroll-snap-align:start;
+
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
 }
 
 /* BACKGROUND IMAGE */
@@ -325,6 +327,7 @@ main{
   width:100%;
   overflow:hidden; /* 🔥 penting */
   position:relative;
+  margin-bottom:30px; 
 }
 
 .highlight-dots{
