@@ -168,18 +168,20 @@ main{
 ========================= */
 .home-layout{
   display:grid;
-  grid-template-columns: 4fr 1fr; /* 🔥 lebih lega kiri */
-  gap:20px;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap:24px;
 }
 
 .home-left{
   display:flex;
   flex-direction:column;
   gap:20px;
+  min-width:0;
 }
 
 .home-right{
-  max-width:320px;
+  width:100%;
+  max-width:280px;
   display:flex;
   flex-direction:column;
   gap:20px;
