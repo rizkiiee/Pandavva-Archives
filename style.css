@@ -35,7 +35,9 @@ main{
 }
 
 .home-layout{
-  max-width:1200px;
+  width:100%;
+  max-width:1400px; /* boleh 1400 / 1500 */
+  margin:0 auto;
 }
 
 /* =========================
@@ -187,6 +189,14 @@ main{
   gap:20px;
   position:sticky;
   top:80px;
+}
+
+.home-left{
+  background:red;
+}
+
+.home-right{
+  background:blue;
 }
 
 
