@@ -168,7 +168,7 @@ main{
 ========================= */
 .home-layout{
   display:grid;
-  grid-template-columns: 3fr 1fr; /* 🔥 lebih lega kiri */
+  grid-template-columns: 4fr 1fr; /* 🔥 lebih lega kiri */
   gap:20px;
 }
 
