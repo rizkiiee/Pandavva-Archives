@@ -169,8 +169,8 @@ main{
 ========================= */
 .home-layout{
   display:grid;
-  grid-template-columns: 2.2fr 1.2fr; /* 🔥 ini game changer */
-  gap:20px;
+  grid-template-columns: 1fr 420px;
+  gap:24px;
 }
 
 .home-left{
