@@ -17,6 +17,7 @@ async function loadVideos(){
 
     videos = data
     generateWeeks()
+    weekIndex = foundIndex !== -1 ? foundIndex : 0
     const today = new Date()
     const todayStr =
     today.getFullYear() + "-" +
@@ -524,31 +525,6 @@ function selectDate(e, date){
     el.scrollIntoView({ behavior:"smooth", block:"nearest" })
   }
 }
-
-/*BUTTON CALENDER*/
-function changeWeek(offset){
-  const next = weekIndex + offset
-
-  if(next < 0 || next >= weeks.length) return
-
-  weekIndex = next
-  renderCalendarMini()
-}
-
-document.addEventListener("click", (e) => {
-  const events = document.getElementById("selectedDateEvents")
-
-  if(!events) return
-
-  if(
-  !e.target.closest("#calendarMini") &&
-  !e.target.closest("#selectedDateEvents")
-  ){
-    selectedDate = null
-    events.innerHTML = ""
-    renderCalendarMini()
-  }
-})
 
 /*HIGHLIGHT*/
 function renderHighlights(){
