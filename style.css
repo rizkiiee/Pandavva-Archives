@@ -358,24 +358,24 @@ main{
   align-items:center;
   gap:10px;
   width:100%;
-  overflow:visible; /* 🔥 penting */
+  overflow:hidden; /* 🔥 penting */
 }
 
 .calendar-week{
   display:grid;
   grid-template-columns: repeat(7, 1fr);
-  gap:6px;
+  gap:8px;
 }
 
 .calendar-day{
-  width:70px;
+  width:52px;
   padding:6px;
   background:#1a1a1d;
-  border-radius:14px;
+  border-radius:12px;
   text-align:center;
   cursor:pointer;
 
-  height:65px;
+  height:52px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -402,7 +402,7 @@ main{
 }
 
 .day-number{
-  font-size:12px;
+  font-size:13px;
   font-weight:600;
 }
 
