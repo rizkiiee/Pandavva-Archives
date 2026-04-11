@@ -363,20 +363,29 @@ main{
   display:flex;
   align-items:center;
   gap:10px;
+  width:100%;
+  overflow:hidden; /* 🔥 penting */
 }
 
 .calendar-week{
-  display:flex;
-  gap:8px;
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap:6px;
 }
 
 .calendar-day{
-  width:55px;
-  padding:8px;
+  width:100%;
+  padding:6px;
   background:#1a1a1d;
   border-radius:10px;
   text-align:center;
   cursor:pointer;
+
+  height:50px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
 .calendar-day.active{
@@ -399,7 +408,7 @@ main{
 }
 
 .day-number{
-  font-size:14px;
+  font-size:12px;
   font-weight:600;
 }
 
