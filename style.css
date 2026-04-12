@@ -408,6 +408,16 @@ main{
   font-weight:500;
 }
 
+.event-channel{
+  font-size:12px;
+  opacity:.7;
+}
+
+.event-time{
+  font-size:12px;
+  opacity:.6;
+}
+
 /* avatar */
 .event-avatar{
   width:36px;
@@ -421,6 +431,7 @@ main{
 .event-info{
   display:flex;
   flex-direction:column;
+  gap:2px;
 }
 
 .event-title{
