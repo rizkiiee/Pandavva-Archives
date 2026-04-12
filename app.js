@@ -414,6 +414,7 @@ if(monthEl){
   })
 }
 
+const dayNames = ["Sen","Sel","Rab","Kam","Jum","Sab","Min"]
 const days = week.map(d => {
 
   const dateStr =
@@ -449,10 +450,13 @@ const dots = events.slice(0,3).map(v => {
   ? `<span class="more">+${events.length - 2}</span>`
   : ""
 
+const dayIndex = d.getDay() === 0 ? 6 : d.getDay() - 1
+
 return `
 <div class="calendar-day ${isOtherMonth ? "other-month" : ""} ${isToday ? "active" : ""} ${selectedDate === dateStr ? "selected" : ""}"
      onclick="selectDate(event, '${dateStr}')">
 
+  <span class="day-name">${dayNames[dayIndex]}</span>
   <span class="day-number">${d.getDate()}</span>
 
   <div class="calendar-dots">
@@ -462,6 +466,7 @@ return `
 
 </div>
 `
+  
 })
 
 container.innerHTML = days.join("")
