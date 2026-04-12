@@ -496,25 +496,22 @@ function renderSelectedEvents(){
 
   container.innerHTML = events.map(v => {
 
-  return `
-  <div class="highlight-card">
+    const id = getVideoId(v.url)
+    const thumb = id
+      ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+      : ""
 
-    <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
+    return `
+    <div class="event-card">
 
-    <div class="highlight-overlay"></div>
+      ${thumb ? `<img src="${thumb}" style="width:100%; border-radius:8px;">` : ""}
 
-    <div class="highlight-content">
-      <h3>${key}</h3>
-      <p>${vids.length} videos</p>
-      <span class="highlight-desc">Deskripsi kamu di sini</span>
+      <p>${v.title || ""}</p>
+
     </div>
-
-  </div>
-`
-
-}).join("")
-
-} // ✅ INI YANG KAMU KURANGIN
+    `
+  }).join("")
+}
 
 function selectDate(e, date){
   e.stopPropagation()
