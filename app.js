@@ -518,6 +518,8 @@ function renderSelectedEvents(){
   </div>
   </div>
   `
+  }).join("")
+}
 
 function selectDate(e, date){
   e.stopPropagation()
