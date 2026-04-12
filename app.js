@@ -534,10 +534,10 @@ function getMemberColor(name){
   const n = name?.toLowerCase() || ""
 
   if(n.includes("yudistira")) return "#22c55e"
-  if(n.includes("bima")) return "#ef4444"
-  if(n.includes("arjuna")) return "#3b82f6"
-  if(n.includes("nakula")) return "#eab308"
-  if(n.includes("sadewa")) return "#a855f7"
+  if(n.includes("arjuna")) return "#ef4444"
+  if(n.includes("nakula")) return "#3b82f6"
+  if(n.includes("sadewa")) return "#eab308"
+  if(n.includes("bima")) return "#a855f7"
 
   return "#666"
 }
