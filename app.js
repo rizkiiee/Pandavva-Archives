@@ -495,22 +495,27 @@ function renderSelectedEvents(){
   }
 container.innerHTML = events.map(v => {
 
-  const ch =
-    Object.entries(channels)
-    .find(([name]) => v.channel && v.channel.includes(name))?.[1] || {}
+  const channelName = v.channel || v.Channel || ""
 
-  const color = getMemberColor(v.member)
+const ch =
+  Object.entries(channels)
+  .find(([name]) => 
+    channelName.toLowerCase().includes(name.toLowerCase())
+  )?.[1] || {
+    avatar: "https://ui-avatars.com/api/?name=" + encodeURIComponent(channelName)
+  }
 
-  return `
-  <div class="event-item" style="background:${color}">
-    <img src="${ch.avatar || ''}" class="event-avatar">
-    <div class="event-info">
+return `
+<div class="event-item" style="background:${color}">
+  <img src="${ch.avatar}" class="event-avatar">
+
+  <div class="event-info">
     <p class="event-title">${v.title || ""}</p>
-      <span class="event-channel"> ${v.channel ? v.channel : "Unknown Channel"} </span>
-      <span class="event-time">${v.time || ""}</span>
-    </div>
+    <span class="event-channel">${channelName}</span>
+    <span class="event-time">${v.time || ""}</span>
   </div>
-  `
+</div>
+`
 }).join("")
 }
 
