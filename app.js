@@ -493,26 +493,27 @@ function renderSelectedEvents(){
     container.innerHTML = `<p style="opacity:.6">No events</p>`
     return
   }
+container.innerHTML = events.map(v => {
 
-  container.innerHTML = events.map(v => {
+  const ch =
+    Object.entries(channels)
+    .find(([name]) => v.channel && v.channel.includes(name))?.[1] || {}
 
-    const ch =
-      Object.entries(channels)
-      .find(([name]) => v.channel && v.channel.includes(name))?.[1] || {}
+  const color = getMemberColor(v.member)
 
-    const color = getMemberColor(v.member)
+  return `
+  <div class="event-item" style="background:${color}">
 
-    return `
-    <div class="event-item" style="--accent:${color}">
-      ${ch.avatar ? `<img src="${ch.avatar}" class="event-avatar">` : ""}
-      
-      <div class="event-info">
-        <p class="event-title">${v.title || ""}</p>
-        <span class="event-time">${v.time || ""}</span>
-      </div>
+    ${ch.avatar ? `<img src="${ch.avatar}" class="event-avatar">` : ""}
+
+    <div class="event-info">
+      <p class="event-title">${v.title || ""}</p>
+      <span class="event-time">${v.time || ""}</span>
     </div>
-    `
-  }).join("")
+
+  </div>
+  `
+}).join("")
 }
 
 function selectDate(e, date){
