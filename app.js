@@ -493,11 +493,11 @@ function renderSelectedEvents(){
     container.innerHTML = `<p style="opacity:.6">No events</p>`
     return
   }
-container.innerHTML = events.map(v => {
+  container.innerHTML = events.map(v => {
 
   const channelName = v.channel || v.Channel || ""
 
-const ch =
+  const ch =
   Object.entries(channels)
   .find(([name]) => 
     channelName.toLowerCase().includes(name.toLowerCase())
@@ -505,8 +505,10 @@ const ch =
     avatar: "https://ui-avatars.com/api/?name=" + encodeURIComponent(channelName)
   }
 
-return `
-<div class="event-item" style="background:${color}">
+  const color = getMemberColor(channelName) // 🔥 INI YANG KURANG
+
+  return `
+  <div class="event-item" style="background:${color}">
   <img src="${ch.avatar}" class="event-avatar">
 
   <div class="event-info">
@@ -514,10 +516,8 @@ return `
     <span class="event-channel">${channelName}</span>
     <span class="event-time">${v.time || ""}</span>
   </div>
-</div>
-`
-}).join("")
-}
+  </div>
+  `
 
 function selectDate(e, date){
   e.stopPropagation()
