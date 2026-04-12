@@ -485,42 +485,35 @@ function renderSelectedEvents(){
   const container = document.getElementById("selectedDateEvents")
   if(!container || !selectedDate) return
 
-  const events = videos.filter(v => 
-    v.schedule_date && v.schedule_date.trim() === selectedDate
-  )
+  const events = videos
+    .filter(v => v.schedule_date?.trim() === selectedDate)
+    .sort((a, b) => (a.time || "").localeCompare(b.time || ""))
 
   if(events.length === 0){
     container.innerHTML = `<p style="opacity:.6">No events</p>`
     return
   }
 
-  const events = videos
-  .filter(v => v.schedule_date?.trim() === selectedDate)
-  .sort((a, b) => (a.time || "").localeCompare(b.time || ""))
-
   container.innerHTML = events.map(v => {
 
-  const ch =
-    Object.entries(channels)
-    .find(([name]) => v.channel && v.channel.includes(name))?.[1] || {}
+    const ch =
+      Object.entries(channels)
+      .find(([name]) => v.channel && v.channel.includes(name))?.[1] || {}
 
-  const color = getMemberColor(v.member)
+    const color = getMemberColor(v.member)
 
-  return `
-  <div class="event-item" style="--accent:${color}">
-
-    <div class="event-left">
+    return `
+    <div class="event-item" style="--accent:${color}">
       ${ch.avatar ? `<img src="${ch.avatar}" class="event-avatar">` : ""}
+      
+      <div class="event-info">
+        <p class="event-title">${v.title || ""}</p>
+        <span class="event-time">${v.time || ""}</span>
+      </div>
     </div>
-
-    <div class="event-info">
-      <p class="event-title">${v.title || ""}</p>
-      <span class="event-time">${v.time || ""}</span>
-    </div>
-
-  </div>
-  `
-}).join("")
+    `
+  }).join("")
+}
 
 function selectDate(e, date){
   e.stopPropagation()
