@@ -407,6 +407,17 @@ main{
   font-weight:600;
 }
 
+.day-name{
+  font-size:10px;
+  opacity:0.6;
+  margin-bottom:2px;
+}
+
+.calendar-day{
+  padding:4px;
+  height:56px;
+}
+
 .calendar-dots{
   display:flex;
   gap:4px;
