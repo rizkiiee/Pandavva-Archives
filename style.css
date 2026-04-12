@@ -410,7 +410,8 @@ main{
 
 .event-channel{
   font-size:12px;
-  opacity:.7;
+  opacity:.75;
+  font-weight:500;
 }
 
 .event-time{
