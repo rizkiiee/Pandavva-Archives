@@ -503,14 +503,13 @@ container.innerHTML = events.map(v => {
 
   return `
   <div class="event-item" style="background:${color}">
-
-    ${ch.avatar ? `<img src="${ch.avatar}" class="event-avatar">` : ""}
-
+    <img src="https://unavatar.io/youtube/${encodeURIComponent(v.channel)}" 
+    class="event-avatar">
     <div class="event-info">
-      <p class="event-title">${v.title || ""}</p>
+    <p class="event-title">${v.title || ""}</p>
+      <span class="event-channel">${v.channel || ""}</span>
       <span class="event-time">${v.time || ""}</span>
     </div>
-
   </div>
   `
 }).join("")
