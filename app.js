@@ -31,9 +31,9 @@ async function loadVideos(){
     renderCalendarMini()
 
     renderSelectedEvents()
-    
-    if(document.getElementById("upcomingGrid"))
-    renderUpcoming()
+
+    if(document.getElementById("liveGrid"))
+    renderLiveGrid()
       
     if(document.getElementById("categoryRow"))
     renderCategories()
@@ -238,18 +238,52 @@ function formatSchedule(date, time){
     : formattedDate
 }
 
-/*UPCCOMING*/
-function renderUpcoming(){
-  const upcoming = videos.filter(v => 
-    v.status === "upcoming" && v.url
-  )
+/*LIVE NOW*/
+function getLiveEvents(){
+  const now = new Date()
 
-  const grid = document.getElementById("upcomingGrid")
-  if(!grid) return
+  return videos.filter(v => {
+    if(!v.schedule_date || !v.time) return false
 
-  grid.innerHTML = upcoming.map(card).join("")
+    const start = new Date(v.schedule_date + "T" + v.time)
+    const end = new Date(start.getTime() + (v.duration || 120) * 60000)
+
+    return now >= start && now <= end
+  })
 }
 
+function renderLiveGrid(){
+  const container = document.getElementById("liveGrid")
+  if(!container) return
+
+  const live = getLiveEvents()
+
+  if(live.length === 0){
+    container.innerHTML = `<p style="opacity:.6">No one is live right now</p>`
+    return
+  }
+
+  container.innerHTML = live.map(v => {
+    const id = getVideoId(v.url)
+    const thumb = id 
+      ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+      : ""
+
+    return `
+    <a class="video live-card" href="${v.url}" target="_blank">
+      <div class="thumb">
+        ${thumb ? `<img src="${thumb}">` : ""}
+        <span class="live-badge">LIVE</span>
+      </div>
+
+      <h3>${v.title || ""}</h3>
+      <p class="meta">${v.channel || ""}</p>
+    </a>
+    `
+  }).join("")
+}
+
+/*CATEGORY*/
 function renderCategoryPage(list, cat){
 
   const grid = document.getElementById("categoryGrid")
@@ -615,5 +649,9 @@ function renderDots(total){
   const dots = document.querySelector(".highlight-dots")
   dots.innerHTML = Array(total).fill(0).map(()=>`<span></span>`).join("")
 }
+
+setInterval(() => {
+  renderLiveGrid()
+}, 60000)
 
 loadVideos()
