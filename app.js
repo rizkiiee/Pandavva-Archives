@@ -142,7 +142,7 @@ function renderSidebar(){
 
   sidebar.innerHTML = members.map(m => `
     <div class="sidebar-item" onclick="filterMember('${m}')">
-      <img src="${avatars[m] || ''}" />
+      <img src="${getMemberInfo(m).avatar}" />
     </div>
   `).join("")
 }
@@ -155,7 +155,7 @@ function renderMiniSidebar(){
 
   mini.innerHTML = members.map(m => `
     <div class="mini-item" onclick="filterMember('${m}')">
-      <img src="${avatars[m] || ''}" />
+     <img src="${getMemberInfo(m).avatar}" />
     </div>
   `).join("")
 }
