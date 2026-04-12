@@ -494,24 +494,33 @@ function renderSelectedEvents(){
     return
   }
 
+  const events = videos
+  .filter(v => v.schedule_date?.trim() === selectedDate)
+  .sort((a, b) => (a.time || "").localeCompare(b.time || ""))
+
   container.innerHTML = events.map(v => {
 
-    const id = getVideoId(v.url)
-    const thumb = id
-      ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
-      : ""
+  const ch =
+    Object.entries(channels)
+    .find(([name]) => v.channel && v.channel.includes(name))?.[1] || {}
 
-    return `
-    <div class="event-card">
+  const color = getMemberColor(v.member)
 
-      ${thumb ? `<img src="${thumb}" style="width:100%; border-radius:8px;">` : ""}
+  return `
+  <div class="event-item" style="--accent:${color}">
 
-      <p>${v.title || ""}</p>
-
+    <div class="event-left">
+      ${ch.avatar ? `<img src="${ch.avatar}" class="event-avatar">` : ""}
     </div>
-    `
-  }).join("")
-}
+
+    <div class="event-info">
+      <p class="event-title">${v.title || ""}</p>
+      <span class="event-time">${v.time || ""}</span>
+    </div>
+
+  </div>
+  `
+}).join("")
 
 function selectDate(e, date){
   e.stopPropagation()
@@ -525,6 +534,18 @@ function selectDate(e, date){
   if(el){
     el.scrollIntoView({ behavior:"smooth", block:"nearest" })
   }
+}
+
+function getMemberColor(name){
+  const n = name?.toLowerCase() || ""
+
+  if(n.includes("yudistira")) return "#22c55e"
+  if(n.includes("bima")) return "#ef4444"
+  if(n.includes("arjuna")) return "#3b82f6"
+  if(n.includes("nakula")) return "#eab308"
+  if(n.includes("sadewa")) return "#a855f7"
+
+  return "#666"
 }
 
 /*HIGHLIGHT*/
