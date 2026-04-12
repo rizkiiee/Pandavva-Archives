@@ -98,6 +98,8 @@ async function loadVideos(){
 
     videos = data
     generateWeeks()
+    renderSidebar()
+    renderMiniSidebar()
 
     const today = new Date()
     selectedDate = today.toISOString().split("T")[0]
@@ -127,6 +129,41 @@ async function loadVideos(){
   }catch(err){
     console.error("ERROR FETCH:", err)
   }
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+function renderSidebar(){
+  const sidebar = document.getElementById("sidebar")
+  if(!sidebar) return
+
+  const members = [...new Set(videos.map(v => v.member))]
+
+  sidebar.innerHTML = members.map(m => `
+    <div class="sidebar-item" onclick="filterMember('${m}')">
+      <img src="${avatars[m] || ''}" />
+    </div>
+  `).join("")
+}
+
+function renderMiniSidebar(){
+  const mini = document.getElementById("miniSidebar")
+  if(!mini) return
+
+  const members = [...new Set(videos.map(v => v.member))]
+
+  mini.innerHTML = members.map(m => `
+    <div class="mini-item" onclick="filterMember('${m}')">
+      <img src="${avatars[m] || ''}" />
+    </div>
+  `).join("")
+}
+
+function filterMember(member){
+  const filtered = videos.filter(v => v.member === member)
+
+  renderMedia(filtered, "memberGrid")
 }
 
 /* =========================
@@ -171,6 +208,34 @@ function card(v){
     </p>
   </div>
   `
+}
+
+/* =========================
+   UPCOMING & NEW
+========================= */
+function renderUpcoming(){
+  const container = document.getElementById("upcomingGrid")
+  if(!container) return
+
+  const now = new Date()
+
+  const upcoming = videos
+    .filter(v => new Date(v.schedule) > now)
+    .sort((a,b) => new Date(a.schedule) - new Date(b.schedule))
+    .slice(0,6)
+
+  container.innerHTML = upcoming.map(v => card(v)).join("")
+}
+
+function renderNew(){
+  const container = document.getElementById("newGrid")
+  if(!container) return
+
+  const sorted = [...videos]
+    .sort((a,b) => new Date(b.upload_date) - new Date(a.upload_date))
+    .slice(0,6)
+
+  container.innerHTML = sorted.map(v => card(v)).join("")
 }
 
 /* =========================
