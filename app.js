@@ -520,6 +520,7 @@ container.innerHTML = events.map(v => {
   </div>
   `
 }).join("")
+}
 
 function selectDate(e, date){
   e.stopPropagation()
