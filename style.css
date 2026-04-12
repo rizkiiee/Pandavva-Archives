@@ -394,6 +394,52 @@ main{
   margin-top:10px;
 }
 
+.event-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#1a1a1d;
+  margin-bottom:10px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* accent bar bawah */
+.event-item::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:3px;
+  background:var(--accent);
+}
+
+/* avatar */
+.event-avatar{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+}
+
+/* info */
+.event-info{
+  display:flex;
+  flex-direction:column;
+}
+
+.event-title{
+  font-size:14px;
+  font-weight:500;
+}
+
+.event-time{
+  font-size:12px;
+  opacity:.6;
+}
+
 .event-card{
   background:#1a1a1d;
   padding:10px;
