@@ -314,17 +314,30 @@ function isNowLive(v){
 function parseDateTime(dateStr, timeStr){
   if(!dateStr || !timeStr) return null
 
+  // 🔥 pastiin string
+  timeStr = String(timeStr)
+
   const [year, month, day] = dateStr.split("-").map(Number)
 
-  // 🔥 HANDLE ":" DAN "."
   let hour, minute
 
   if(timeStr.includes(":")){
     [hour, minute] = timeStr.split(":").map(Number)
-  } else if(timeStr.includes(".")){
+  } 
+  else if(timeStr.includes(".")){
     [hour, minute] = timeStr.split(".").map(Number)
-  } else {
-    return null
+  } 
+  else {
+    // fallback kalau format aneh (misal 945)
+    if(timeStr.length === 3){
+      hour = Number(timeStr[0])
+      minute = Number(timeStr.slice(1))
+    } else if(timeStr.length === 4){
+      hour = Number(timeStr.slice(0,2))
+      minute = Number(timeStr.slice(2))
+    } else {
+      return null
+    }
   }
 
   return new Date(year, month - 1, day, hour, minute)
