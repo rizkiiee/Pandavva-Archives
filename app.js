@@ -240,7 +240,7 @@ function formatSchedule(date, time){
 
 /*LIVE NOW*/
 function getLiveEvents(){
-  const now = getNowWIB()
+  const now = new Date()
 
   return videos.filter(v => {
     if(!v.schedule_date || !v.time || !v.url) return false
@@ -304,7 +304,7 @@ function renderLiveGrid(){
 }
 
 function isNowLive(v){
-  const now = getNowWIB()
+  const now = new Date()
   const start = parseDateTimeWIB(v.schedule_date, v.time)
   if(!start) return false
 
@@ -330,13 +330,10 @@ function parseDateTimeWIB(dateStr, timeStr){
     return null
   }
 
-  // 🔥 KONVERSI KE WIB (UTC+7)
-  return new Date(Date.UTC(year, month - 1, day, hour - 7, minute))
-}
+  // WIB = UTC+7
+  const utc = Date.UTC(year, month - 1, day, hour - 7, minute)
 
-function getNowWIB(){
-  const now = new Date()
-  return new Date(now.getTime() + (7 * 60 * 60000))
+  return new Date(utc)
 }
 
 /*CATEGORY*/
