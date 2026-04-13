@@ -255,6 +255,8 @@ function getLiveEvents(){
 }
 
 function renderLiveGrid(){
+  console.log("VIDEOS:", videos)
+  console.log("LIVE RESULT:", getLiveEvents())
   const section = document.getElementById("liveSection")
   const container = document.getElementById("liveGrid")
   if(!container || !section) return
