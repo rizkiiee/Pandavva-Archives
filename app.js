@@ -245,7 +245,8 @@ function getLiveEvents(){
   return videos.filter(v => {
     if(!v.schedule_date || !v.time || !v.url) return false
 
-    const start = new Date(v.schedule_date + "T" + v.time)
+    const start = parseDateTime(v.schedule_date, v.time)
+    if(!start) return false
     const before30 = new Date(start.getTime() - 30*60000)
     const end = new Date(start.getTime() + (v.duration || 120)*60000)
 
@@ -301,11 +302,22 @@ function renderLiveGrid(){
 }
 
 function isNowLive(v){
+  const before30 = new Date(start.getTime() - 31*60000)
   const now = new Date()
-  const start = new Date(v.schedule_date + "T" + v.time)
+  const start = parseDateTime(v.schedule_date, v.time)
+  if(!start) return false
   const end = new Date(start.getTime() + (v.duration || 120)*60000)
 
   return now >= start && now <= end
+}
+
+function parseDateTime(dateStr, timeStr){
+  if(!dateStr || !timeStr) return null
+
+  const [year, month, day] = dateStr.split("-").map(Number)
+  const [hour, minute] = timeStr.split(":").map(Number)
+
+  return new Date(year, month - 1, day, hour, minute)
 }
 
 /*CATEGORY*/
