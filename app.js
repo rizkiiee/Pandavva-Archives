@@ -247,12 +247,9 @@ function getLiveEvents(){
 
     const start = parseDateTimeWIB(v.schedule_date, v.time)
     if(!start) return false
-    const before30 = new Date(start.getTime() - 30*60000)
-    const end = new Date(start.getTime() + (v.duration || 120)*60000)
-
-    return now >= before30 && now <= end
 
     const diffMinutes = (start - now) / 60000
+
     return diffMinutes <= 30 && diffMinutes >= -120
   })
 }
@@ -336,7 +333,7 @@ function parseDateTimeWIB(dateStr, timeStr){
 }
 
 function getNowWIB(){
-  const now = getNowWIB()
+  const now = new Date()
   return new Date(now.getTime() + (7 * 60 * 60000))
 }
 
