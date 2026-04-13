@@ -557,6 +557,51 @@ main{
 }
 
 /*LIVE NOW*/
+#liveSection{
+  display:none;
+}
+
+#liveGrid{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.live-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  border-radius:10px;
+  background:#1a1a1d;
+}
+
+.live-title{
+  font-size:13px;
+}
+
+.live-channel{
+  font-size:11px;
+  opacity:.6;
+}
+
+.live-status{
+  font-size:11px;
+  padding:4px 6px;
+  border-radius:6px;
+}
+
+/* warna */
+.is-live .live-status{
+  background:red;
+  color:white;
+}
+
+.is-soon .live-status{
+  background:#facc15;
+  color:black;
+}
+
 .live-card{
   position:relative;
 }
