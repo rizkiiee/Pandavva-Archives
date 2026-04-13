@@ -278,7 +278,7 @@ function renderLiveGrid(){
     if(aLive && !bLive) return -1
     if(!aLive && bLive) return 1
 
-    return new Date(a.schedule_date+"T"+a.time) - new Date(b.schedule_date+"T"+b.time)
+    return parseDateTime(a.schedule_date, a.time) - parseDateTime(b.schedule_date, b.time)
   })
 
   container.innerHTML = live.map(v => {
@@ -302,10 +302,10 @@ function renderLiveGrid(){
 }
 
 function isNowLive(v){
-  const before30 = new Date(start.getTime() - 31*60000)
   const now = new Date()
   const start = parseDateTime(v.schedule_date, v.time)
   if(!start) return false
+
   const end = new Date(start.getTime() + (v.duration || 120)*60000)
 
   return now >= start && now <= end
@@ -315,10 +315,22 @@ function parseDateTime(dateStr, timeStr){
   if(!dateStr || !timeStr) return null
 
   const [year, month, day] = dateStr.split("-").map(Number)
-  const [hour, minute] = timeStr.split(":").map(Number)
+
+  // 🔥 HANDLE ":" DAN "."
+  let hour, minute
+
+  if(timeStr.includes(":")){
+    [hour, minute] = timeStr.split(":").map(Number)
+  } else if(timeStr.includes(".")){
+    [hour, minute] = timeStr.split(".").map(Number)
+  } else {
+    return null
+  }
 
   return new Date(year, month - 1, day, hour, minute)
 }
+
+console.log("LIVE EVENTS:", getLiveEvents())
 
 /*CATEGORY*/
 function renderCategoryPage(list, cat){
