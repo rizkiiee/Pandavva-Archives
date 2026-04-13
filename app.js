@@ -243,44 +243,69 @@ function getLiveEvents(){
   const now = new Date()
 
   return videos.filter(v => {
-    if(!v.schedule_date || !v.time) return false
+    if(!v.schedule_date || !v.time || !v.url) return false
 
     const start = new Date(v.schedule_date + "T" + v.time)
-    const end = new Date(start.getTime() + (v.duration || 120) * 60000)
+    const before30 = new Date(start.getTime() - 30*60000)
+    const end = new Date(start.getTime() + (v.duration || 120)*60000)
 
-    return now >= start && now <= end
+    return now >= before30 && now <= end
   })
 }
 
 function renderLiveGrid(){
+  const section = document.getElementById("liveSection")
   const container = document.getElementById("liveGrid")
-  if(!container) return
+  if(!container || !section) return
 
   const live = getLiveEvents()
 
+  // ❌ kalau kosong → tetap hidden
   if(live.length === 0){
-    container.innerHTML = `<p style="opacity:.6">No one is live right now</p>`
+    section.style.display = "none"
     return
   }
 
+  // ✅ kalau ada → munculin
+  section.style.display = "block"
+
+  // 🔥 SORT: live dulu
+  live.sort((a,b)=>{
+    const aLive = isNowLive(a)
+    const bLive = isNowLive(b)
+
+    if(aLive && !bLive) return -1
+    if(!aLive && bLive) return 1
+
+    return new Date(a.schedule_date+"T"+a.time) - new Date(b.schedule_date+"T"+b.time)
+  })
+
   container.innerHTML = live.map(v => {
-    const id = getVideoId(v.url)
-    const thumb = id 
-      ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
-      : ""
+    const isLive = isNowLive(v)
 
     return `
-    <a class="video live-card" href="${v.url}" target="_blank">
-      <div class="thumb">
-        ${thumb ? `<img src="${thumb}">` : ""}
-        <span class="live-badge">LIVE</span>
+    <a class="live-item ${isLive ? "is-live" : "is-soon"}" href="${v.url}" target="_blank">
+      
+      <div class="live-info">
+        <p class="live-title">${v.title || ""}</p>
+        <span class="live-channel">${v.channel || ""}</span>
       </div>
 
-      <h3>${v.title || ""}</h3>
-      <p class="meta">${v.channel || ""}</p>
+      <span class="live-status">
+        ${isLive ? "LIVE" : "SOON"}
+      </span>
+
     </a>
     `
   }).join("")
+}
+
+function isNowLive(v){
+  const now = new Date()
+  const start = new Date(v.schedule_date + "T" + v.time)
+  const end = new Date(start.getTime() + (v.duration || 120)*60000)
+
+  return now >= start && now <= end
 }
 
 /*CATEGORY*/
