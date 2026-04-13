@@ -240,17 +240,20 @@ function formatSchedule(date, time){
 
 /*LIVE NOW*/
 function getLiveEvents(){
-  const now = new Date()
+  const now = getNowWIB()
 
   return videos.filter(v => {
     if(!v.schedule_date || !v.time || !v.url) return false
 
-    const start = parseDateTime(v.schedule_date, v.time)
+    const start = parseDateTimeWIB(v.schedule_date, v.time)
     if(!start) return false
     const before30 = new Date(start.getTime() - 30*60000)
     const end = new Date(start.getTime() + (v.duration || 120)*60000)
 
     return now >= before30 && now <= end
+
+    const diffMinutes = (start - now) / 60000
+    return diffMinutes <= 30 && diffMinutes >= -120
   })
 }
 
@@ -278,7 +281,7 @@ function renderLiveGrid(){
     if(aLive && !bLive) return -1
     if(!aLive && bLive) return 1
 
-    return parseDateTime(a.schedule_date, a.time) - parseDateTime(b.schedule_date, b.time)
+    return parseDateTimeWIB(a.schedule_date, a.time) - parseDateTimeWIB(b.schedule_date, b.time)
   })
 
   container.innerHTML = live.map(v => {
@@ -302,8 +305,8 @@ function renderLiveGrid(){
 }
 
 function isNowLive(v){
-  const now = new Date()
-  const start = parseDateTime(v.schedule_date, v.time)
+  const now = getNowWIB()
+  const start = parseDateTimeWIB(v.schedule_date, v.time)
   if(!start) return false
 
   const end = new Date(start.getTime() + (v.duration || 120)*60000)
@@ -311,10 +314,9 @@ function isNowLive(v){
   return now >= start && now <= end
 }
 
-function parseDateTime(dateStr, timeStr){
+function parseDateTimeWIB(dateStr, timeStr){
   if(!dateStr || !timeStr) return null
 
-  // 🔥 pastiin string
   timeStr = String(timeStr)
 
   const [year, month, day] = dateStr.split("-").map(Number)
@@ -323,27 +325,20 @@ function parseDateTime(dateStr, timeStr){
 
   if(timeStr.includes(":")){
     [hour, minute] = timeStr.split(":").map(Number)
-  } 
-  else if(timeStr.includes(".")){
+  } else if(timeStr.includes(".")){
     [hour, minute] = timeStr.split(".").map(Number)
-  } 
-  else {
-    // fallback kalau format aneh (misal 945)
-    if(timeStr.length === 3){
-      hour = Number(timeStr[0])
-      minute = Number(timeStr.slice(1))
-    } else if(timeStr.length === 4){
-      hour = Number(timeStr.slice(0,2))
-      minute = Number(timeStr.slice(2))
-    } else {
-      return null
-    }
+  } else {
+    return null
   }
 
-  return new Date(year, month - 1, day, hour, minute)
+  // 🔥 KONVERSI KE WIB (UTC+7)
+  return new Date(Date.UTC(year, month - 1, day, hour - 7, minute))
 }
 
-console.log("LIVE EVENTS:", getLiveEvents())
+function getNowWIB(){
+  const now = getNowWIB()
+  return new Date(now.getTime() + (7 * 60 * 60000))
+}
 
 /*CATEGORY*/
 function renderCategoryPage(list, cat){
