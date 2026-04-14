@@ -283,24 +283,33 @@ function renderLiveGrid(){
     return parseDateTimeWIB(a.schedule_date, a.time) - parseDateTimeWIB(b.schedule_date, b.time)
   })
 
-  container.innerHTML = live.map(v => {
-    const isLive = isNowLive(v)
+container.innerHTML = live.map(v => {
+  const isLive = isNowLive(v)
 
-    return `
-    <a class="live-item ${isLive ? "is-live" : "is-soon"}" href="${v.url}" target="_blank">
-      
-      <div class="live-info">
-        <p class="live-title">${v.title || ""}</p>
-        <span class="live-channel">${v.channel || ""}</span>
-      </div>
+  const id = getVideoId(v.url)
+  const thumb = id 
+    ? `https://i.ytimg.com/vi/${id}/mqdefault.jpg`
+    : ""
 
-      <span class="live-status">
-        ${isLive ? "LIVE" : "SOON"}
-      </span>
+  return `
+  <a class="live-item ${isLive ? "is-live" : "is-soon"}" href="${v.url}" target="_blank">
+    
+    <div class="live-thumb">
+      ${thumb ? `<img src="${thumb}">` : ""}
+    </div>
 
-    </a>
-    `
-  }).join("")
+    <div class="live-info">
+      <p class="live-title">${v.title || ""}</p>
+      <span class="live-channel">${v.member || ""}</span>
+    </div>
+
+    <span class="live-status">
+      ${isLive ? "LIVE" : "SOON"}
+    </span>
+
+  </a>
+  `
+}).join("")
 }
 
 function isNowLive(v){
