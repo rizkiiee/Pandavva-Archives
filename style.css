@@ -567,15 +567,6 @@ main{
   gap:10px;
 }
 
-.live-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px;
-  border-radius:10px;
-  background:#1a1a1d;
-}
-
 .live-title{
   font-size:13px;
 }
@@ -619,6 +610,7 @@ main{
 
 .live-item{
   display:flex;
+  align-items:center;
   gap:10px;
   padding:10px;
   background:#1a1a1d;
@@ -628,6 +620,7 @@ main{
 .live-thumb{
   width:120px;
   aspect-ratio:16/9;
+  flex-shrink:0;
   overflow:hidden;
   border-radius:8px;
 }
@@ -636,4 +629,11 @@ main{
   width:100%;
   height:100%;
   object-fit:cover;
+}
+
+.live-info{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
 }
