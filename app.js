@@ -241,6 +241,7 @@ function formatSchedule(date, time){
 /*LIVE NOW*/
 function getLiveEvents(){
   const now = new Date()
+  const nowWIB = new Date(now.getTime() - 60 * 60000)
 
   return videos.filter(v => {
     if(!v.schedule_date || !v.time || !v.url) return false
@@ -248,7 +249,7 @@ function getLiveEvents(){
     const start = parseDateTimeWIB(v.schedule_date, v.time)
     if(!start) return false
 
-    const diffMinutes = (start - now) / 60000
+    const diffMinutes = (start - nowWIB) / 60000
 
     return diffMinutes <= 30 && diffMinutes >= -120
   })
