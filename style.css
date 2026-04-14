@@ -195,7 +195,7 @@ main{
 ========================= */
 .grid{
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap:16px;
 }
 
@@ -219,6 +219,7 @@ main{
 .thumb{
   width:100%;
   aspect-ratio:16/9;
+  margin-button:6px;
 }
 
 .thumb img{
