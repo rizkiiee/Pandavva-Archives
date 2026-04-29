@@ -650,8 +650,8 @@ function getMemberColor(name){
   if(n.includes("arjuna")) return "linear-gradient(135deg, #f28b82, #f1cfed)"
   if(n.includes("nakula")) return "linear-gradient(135deg, #8ec5fc, #b7d3f4)"
   if(n.includes("sadewa")) return "linear-gradient(135deg, #f6d365, #f1e5f6)"
-  if(n.includes("bima")) return "linear-gradient(135deg, #c3aed6, #f1cfed)"
-
+  if(n.includes("bima")) return "linear-gradient(135deg, #a88bd6, #f1cfed)"
+  
   return "#eee"
 }
 
