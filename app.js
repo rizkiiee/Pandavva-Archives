@@ -305,7 +305,6 @@ container.innerHTML = live.map(v => {
     ? `https://i.ytimg.com/vi/${id}/mqdefault.jpg`
     : ""
 
-  return `
  return `
   <a class="live-card ${isLive ? "is-live" : "is-soon"}" href="${v.url || '#'}" target="_blank">
   
