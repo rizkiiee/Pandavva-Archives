@@ -1,11 +1,24 @@
+:root{
+  --primary:#7181c8;
+  --secondary:#ababdc;
+  --blue:#b7d3f4;
+  --pink:#f1cfed;
+  --soft:#f1e5f6;
+}
+
 /* =========================
    1. GLOBAL
 ========================= */
 body{
   margin:0;
   font-family:sans-serif;
-  background:#0e0e10;
   color:white;
+
+  background: radial-gradient(
+    circle at top left,
+    #1a1b2f,
+    #0e0e10 60%
+  );
 }
 
 a{
@@ -204,12 +217,16 @@ main{
    7. VIDEO CARD
 ========================= */
 .video{
-  background:transparent;
+   background:linear-gradient(
+    135deg,
+    rgba(113,129,200,0.15),
+    rgba(241,207,237,0.08)
+  );
   overflow:hidden;
 
   display:flex;
   flex-direction:column;
-  border-radius:0;
+  border-radius:12px;
 }
 
 .video:hover{
@@ -388,7 +405,6 @@ main{
 .calendar-day{
   width:52px;
   padding:6px;
-  background:#1a1a1d;
   border-radius:12px;
   text-align:center;
   cursor:pointer;
@@ -399,14 +415,6 @@ main{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-}
-
-.calendar-day.active{
-  background:#6c5ce7;
-}
-
-.calendar-day.selected{
-  border:2px solid white;
 }
 
 .selected-events{
@@ -428,6 +436,14 @@ main{
   color:white;
 
   font-weight:500;
+}
+
+.event-item{
+  background:linear-gradient(
+    135deg,
+    rgba(183,211,244,0.2),
+    rgba(171,171,220,0.1)
+  );
 }
 
 .event-channel{
@@ -491,6 +507,10 @@ main{
   height:56px;
 }
 
+.calendar-day{
+  background:#1a1a2a;
+}
+
 .calendar-dots{
   display:flex;
   align-items:center;   /* 🔥 ini kunci utama */
@@ -527,6 +547,18 @@ main{
   flex-direction:column;
   align-items:center;
   justify-content:center;
+}
+
+.calendar-day.active{
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+}
+
+.calendar-day.selected{
+  border:2px solid var(--soft);
 }
 
 /* =========================
@@ -610,6 +642,16 @@ main{
   color:white;
 }
 
+.live-card{
+  background:linear-gradient(
+    135deg,
+    rgba(113,129,200,0.2),
+    rgba(183,211,244,0.1)
+  );
+  padding:10px;
+  border-radius:14px;
+}
+
 /* thumbnail besar */
 .live-thumb-big{
   width:100%;
@@ -641,14 +683,17 @@ main{
   display:flex;
   flex-direction:column;
   gap:2px;
+  color:#d6d6f0;
 }
 
 .live-title{
   font-size:14px;
   font-weight:500;
+  color:#d6d6f0;
 }
 
 .live-channel{
   font-size:12px;
   opacity:.7;
+  color:#d6d6f0;
 }
