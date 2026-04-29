@@ -1,9 +1,18 @@
 :root{
+  --bg-soft:#f1e5f6;
+  --bg-blue:#b7d3f4;
   --primary:#7181c8;
   --secondary:#ababdc;
-  --blue:#b7d3f4;
   --pink:#f1cfed;
-  --soft:#f1e5f6;
+
+  --text-dark:#2a2a3a;
+  --text-soft:#5a5a7a;
+
+  --arjuna:#f28b82;   /* soft coral red */
+  --sadewa:#f6d365;   /* pastel yellow */
+  --nakula:#8ec5fc;   /* soft sky blue */
+  --bima:#c3aed6;     /* lavender purple */
+  --yudistira:#7bdcb5; /* mint green */
 }
 
 /* =========================
@@ -12,12 +21,12 @@
 body{
   margin:0;
   font-family:sans-serif;
-  color:white;
+  color:#2a2a3a;
 
-  background: radial-gradient(
-    circle at top left,
-    #1a1b2f,
-    #0e0e10 60%
+  background: linear-gradient(
+    135deg,
+    #f1e5f6,
+    #b7d3f4
   );
 }
 
@@ -66,8 +75,13 @@ main{
   align-items:center;
 
   padding-left:60px;
-  background:#111;
   z-index:1100;
+}
+
+.topbar{
+  background:rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  color:#2a2a3a;
 }
 
 .leftTitle{
@@ -104,6 +118,10 @@ main{
   overflow:hidden; 
   gap:16px;
   z-index:1000;
+}
+
+.sidebar-mini{
+  background:rgba(255,255,255,0.3);
 }
 
 .sidebar-mini img{
@@ -217,16 +235,10 @@ main{
    7. VIDEO CARD
 ========================= */
 .video{
-   background:linear-gradient(
-    135deg,
-    rgba(113,129,200,0.15),
-    rgba(241,207,237,0.08)
-  );
-  overflow:hidden;
-
-  display:flex;
-  flex-direction:column;
-  border-radius:12px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+  border-radius:14px;
+  padding:8px;
 }
 
 .video:hover{
@@ -439,11 +451,7 @@ main{
 }
 
 .event-item{
-  background:linear-gradient(
-    135deg,
-    rgba(183,211,244,0.2),
-    rgba(171,171,220,0.1)
-  );
+  background:rgba(113,129,200,0.15);
 }
 
 .event-channel{
@@ -507,10 +515,6 @@ main{
   height:56px;
 }
 
-.calendar-day{
-  background:#1a1a2a;
-}
-
 .calendar-dots{
   display:flex;
   align-items:center;   /* 🔥 ini kunci utama */
@@ -535,11 +539,11 @@ main{
   height:6px;       /* 🔥 SAMAKAN dengan dot */
 }
 
-.dot.yudistira{ background:#22c55e; }
-.dot.arjuna{ background:#ef4444; }
-.dot.nakula{ background:#3b82f6; }
-.dot.sadewa{ background:#eab308; }
-.dot.bima{ background:#a855f7; }
+.dot.yudistira{ background:var(--yudistira); }
+.dot.arjuna{ background:var(--arjuna); }
+.dot.nakula{ background:var(--nakula); }
+.dot.sadewa{ background:var(--sadewa); }
+.dot.bima{ background:var(--bima); }
 
 .calendar-day{
   height:50px;
@@ -549,16 +553,21 @@ main{
   justify-content:center;
 }
 
+.calendar-day{
+  background:rgba(255,255,255,0.4);
+}
+
 .calendar-day.active{
-  background:linear-gradient(
+  background: linear-gradient(
     135deg,
     var(--primary),
-    var(--secondary)
+    var(--pink)
   );
+  color:white;
 }
 
 .calendar-day.selected{
-  border:2px solid var(--soft);
+  border:2px solid white;
 }
 
 /* =========================
@@ -643,13 +652,11 @@ main{
 }
 
 .live-card{
-  background:linear-gradient(
-    135deg,
-    rgba(113,129,200,0.2),
-    rgba(183,211,244,0.1)
-  );
-  padding:10px;
+  background:rgba(255,255,255,0.5);
+  backdrop-filter: blur(6px);
   border-radius:14px;
+  border:1px solid rgba(255,255,255,0.3);
+  padding:10px;
 }
 
 /* thumbnail besar */
@@ -683,17 +690,21 @@ main{
   display:flex;
   flex-direction:column;
   gap:2px;
-  color:#d6d6f0;
+  color:var(--text-soft);
 }
 
 .live-title{
   font-size:14px;
   font-weight:500;
-  color:#d6d6f0;
+  color:var(--text-soft);
 }
 
 .live-channel{
   font-size:12px;
   opacity:.7;
-  color:#d6d6f0;
+  color:var(--text-soft);
+}
+
+h3{
+  color:var(--text-dark);
 }
