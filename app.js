@@ -22,7 +22,12 @@ async function loadVideos(){
     const videoData = await videoRes.json()
     const scheduleData = await scheduleRes.json()
 
+    console.log("VIDEO:", videoData)
+    console.log("SCHEDULE:", scheduleData)
+
     videos = [...videoData, ...scheduleData]
+
+    console.log("FINAL:", videos)
 
     generateWeeks()
     const today = new Date()
@@ -724,9 +729,5 @@ function renderDots(total){
 setInterval(() => {
   renderLiveGrid()
 }, 60000)
-
-console.log("VIDEO:", videoData)
-console.log("SCHEDULE:", scheduleData)
-console.log("FINAL:", videos)
 
 loadVideos()
