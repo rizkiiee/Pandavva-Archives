@@ -76,37 +76,32 @@ main{
 .topbar{
   position:fixed;
   top:0;
-  left:0;
+  left:70px; /* 🔥 biar gak nabrak sidebar */
   right:0;
   height:60px;
 
   display:flex;
   align-items:center;
 
-  padding-left:60px;
-  z-index:1100;
-}
+  padding:0 20px;
 
-.topbar{
-  background:var(--glass);
-  backdrop-filter: blur(12px);
-  color:var(--text-main);
+  background:transparent; /* 🔥 nyatu sama background */
+  backdrop-filter:none;
+
+  z-index:1100;
 }
 
 .leftTitle{
   font-size:18px;
   font-weight:600;
-  text-transform:capitalize;
+  color:var(--text-main);
 }
 
 .topbar button{
   position:absolute;
-  left:15px;
-  background:none;
-  border:none;
-  color:white;
+  left:-55px; /* 🔥 pindah ke area sidebar */
+  color:#2a2a3a; /* 🔥 warna gelap */
   font-size:22px;
-  cursor:pointer;
 }
 
 
@@ -130,7 +125,9 @@ main{
 }
 
 .sidebar-mini{
-  background:rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.35);
+  backdrop-filter: blur(10px);
+  border-right:1px solid rgba(255,255,255,0.4);
 }
 
 .sidebar-mini img{
@@ -218,6 +215,7 @@ main{
   flex-direction:column;
   gap:20px;
   min-width:0;
+  position:relative;
 }
 
 .home-right{
@@ -226,8 +224,16 @@ main{
   display:flex;
   flex-direction:column;
   gap:20px;
-  position:sticky;
+  position:relative;
   top:80px;
+}
+
+.home-left::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  pointer-events:none;
 }
 
 /* =========================
@@ -247,12 +253,13 @@ main{
   background:var(--glass);
   backdrop-filter: blur(10px);
   border-radius:16px;
-  border:1px solid var(--glass-border);
-  box-shadow:0 8px 20px var(--shadow-soft);
+  border:1px solid rgba(255,255,255,0.5);
+  box-shadow:0 6px 18px rgba(150,155,231,0.15);
 }
 
 .video:hover{
-  transform:scale(1.03);
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(150,155,231,0.25);
 }
 
 .thumb{
@@ -463,8 +470,8 @@ main{
   background:var(--glass);
   backdrop-filter: blur(10px);
   border-radius:16px;
-  border:1px solid var(--glass-border);
-  box-shadow:0 8px 20px var(--shadow-soft);
+  border:1px solid rgba(255,255,255,0.6);
+  box-shadow:0 6px 18px rgba(150,155,231,0.15);
 }
 
 .event-channel{
@@ -668,8 +675,13 @@ main{
   background:var(--glass);
   backdrop-filter: blur(10px);
   border-radius:16px;
-  border:1px solid var(--glass-border);
-  box-shadow:0 8px 20px var(--shadow-soft);
+  border:1px solid rgba(255,255,255,0.5);
+  box-shadow:0 6px 18px rgba(150,155,231,0.15);
+}
+
+.live-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(150,155,231,0.25);
 }
 
 /* thumbnail besar */
