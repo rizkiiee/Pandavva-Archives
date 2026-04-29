@@ -92,9 +92,13 @@ main{
 }
 
 .leftTitle{
-  font-size:18px;
-  font-weight:600;
-  color:var(--text-main);
+  font-size:24px;   /* 🔥 lebih besar dari section title */
+  font-weight:700;
+  letter-spacing:0.5px;
+
+  background:linear-gradient(90deg, #969BE7, #EEC1DD);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .topbar button{
@@ -314,7 +318,7 @@ main{
 
 .highlight-card{
   min-width:100%;
-  height:260px; /* 🔥 WAJIB ADA */
+  height:320px; /* 🔥 WAJIB ADA */
   flex-shrink:0;
 
   border-radius:20px;
@@ -335,10 +339,12 @@ main{
 .highlight-overlay{
   position:absolute;
   inset:0;
+  box-shadow:0 10px 30px rgba(150,155,231,0.2);
+
   background:linear-gradient(
     to right,
-    rgba(0,0,0,0.8),
-    rgba(0,0,0,0.2)
+    rgba(0,0,0,0.5),   /* 🔥 dikurangin */
+    rgba(0,0,0,0.1)
   );
 }
 
@@ -356,9 +362,15 @@ main{
   margin:0 0 6px;
 }
 
+.highlight-content h3{
+  font-size:26px;
+  font-weight:700;
+  color:white;
+}
+
 .highlight-content p{
-  font-size:13px;
-  opacity:.8;
+  font-size:14px;
+  opacity:.9;
 }
 
 .highlight-desc{
@@ -388,7 +400,7 @@ main{
   width:100%;
   overflow:hidden; /* 🔥 penting */
   position:relative;
-  margin-bottom:30px; 
+  margin-bottom:16px; 
 }
 
 .highlight-dots{
@@ -602,7 +614,7 @@ main{
 
   main{
     margin-left:0;
-    padding:80px 12px;
+    padding:60px 12px;
   }
 
   .grid{
@@ -723,4 +735,10 @@ main{
 
 h3{
   color:var(--text-dark);
+}
+
+h2{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:10px;
 }
