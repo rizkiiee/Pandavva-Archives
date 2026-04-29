@@ -24,7 +24,6 @@ async function loadVideos(){
 
     videos = [...videoData, ...scheduleData]
 
-    videos = data
     generateWeeks()
     const today = new Date()
     const todayStr =
@@ -177,7 +176,7 @@ function renderHome(){
 const grid=document.getElementById("homeGrid")
 
 const filtered =
-videos.filter(v=>v.duration)
+videos.filter(v => v.duration && v.date)
 
 const sorted=[...filtered].sort((a,b)=>
 new Date(b.date) - new Date(a.date)
@@ -250,11 +249,11 @@ function formatSchedule(date, time){
 /*LIVE NOW*/
 function getLiveEvents(){
   const now = new Date()
-  const nowWIB = new Date(now.getTime() - 60 * 60000)
-
+  const nowWIB = new Date()
+  
   return videos.filter(v => {
-    if(!v.schedule_date || !v.time || !v.url) return false
-
+  if(!v.schedule_date || !v.time) return false
+    
     const start = parseDateTimeWIB(v.schedule_date, v.time)
     if(!start) return false
 
@@ -725,5 +724,9 @@ function renderDots(total){
 setInterval(() => {
   renderLiveGrid()
 }, 60000)
+
+console.log("VIDEO:", videoData)
+console.log("SCHEDULE:", scheduleData)
+console.log("FINAL:", videos)
 
 loadVideos()
