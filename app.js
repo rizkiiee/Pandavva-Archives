@@ -1,5 +1,7 @@
-const API =
+const VIDEO_API =
 "https://opensheet.elk.sh/16IveyFW68vwyVHRIVH9MU0Jblh6HjUQ3PQU_QiE2C8c/videos"
+const SCHEDULE_API =
+"https://opensheet.elk.sh/16IveyFW68vwyVHRIVH9MU0Jblh6HjUQ3PQU_QiE2C8c/schedule"
 
 let videos=[]
 let currentWeekOffset = 0
@@ -12,8 +14,15 @@ let weeks = []
 
 async function loadVideos(){
   try{
-    const res = await fetch(API)
-    const data = await res.json()
+    const [videoRes, scheduleRes] = await Promise.all([
+    fetch(VIDEO_API),
+    fetch(SCHEDULE_API)
+    ])
+
+    const videoData = await videoRes.json()
+    const scheduleData = await scheduleRes.json()
+
+    videos = [...videoData, ...scheduleData]
 
     videos = data
     generateWeeks()
