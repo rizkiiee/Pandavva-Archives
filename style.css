@@ -215,7 +215,6 @@ main{
   flex-direction:column;
   gap:20px;
   min-width:0;
-  position:relative;
 }
 
 .home-right{
@@ -224,16 +223,8 @@ main{
   display:flex;
   flex-direction:column;
   gap:20px;
-  position:relative;
+  position:sticky;
   top:80px;
-}
-
-.home-left::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:20px;
-  pointer-events:none;
 }
 
 /* =========================
