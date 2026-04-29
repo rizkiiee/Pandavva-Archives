@@ -576,84 +576,62 @@ main{
   flex-shrink:0;
 }
 
-/*LIVE NOW*/
-#liveSection{
-  display:none;
-}
+/* ===== LIVE VERTICAL STYLE ===== */
 
 #liveGrid{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:16px;
 }
 
-.live-title{
-  font-size:13px;
-}
-
-.live-channel{
-  font-size:11px;
-  opacity:.6;
-}
-
-.live-status{
-  font-size:11px;
-  padding:4px 6px;
-  border-radius:6px;
-}
-
-/* warna */
-.is-live .live-status{
-  background:red;
+/* card utama */
+.live-card{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  text-decoration:none;
   color:white;
 }
 
-.is-soon .live-status{
-  background:#facc15;
-  color:black;
-}
-
-.live-card{
+/* thumbnail besar */
+.live-thumb-big{
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:12px;
+  overflow:hidden;
   position:relative;
 }
 
-.live-badge{
-  position:absolute;
-  bottom:8px;
-  right:8px;
-  background:red;
-  color:white;
-  font-size:11px;
-  padding:4px 6px;
-  border-radius:6px;
-}
-
-.live-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px;
-  background:#1a1a1d;
-  border-radius:10px;
-}
-
-.live-thumb{
-  width:120px;
-  aspect-ratio:16/9;
-  flex-shrink:0;
-  overflow:hidden;
-  border-radius:8px;
-}
-
-.live-thumb img{
+.live-thumb-big img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.live-info{
-  flex:1;
+/* badge live */
+.live-badge{
+  position:absolute;
+  bottom:8px;
+  left:8px;
+  background:red;
+  padding:4px 8px;
+  font-size:12px;
+  border-radius:6px;
+}
+
+/* text */
+.live-meta{
   display:flex;
   flex-direction:column;
-  gap:4px;
+  gap:2px;
+}
+
+.live-title{
+  font-size:14px;
+  font-weight:500;
+}
+
+.live-channel{
+  font-size:12px;
+  opacity:.7;
 }
