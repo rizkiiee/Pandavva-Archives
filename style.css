@@ -405,6 +405,10 @@ main{
   background:#6c5ce7;
 }
 
+.calendar-day.selected{
+  border:2px solid white;
+}
+
 .selected-events{
   display:flex;
   flex-direction:column;
@@ -498,6 +502,17 @@ main{
   width:6px;
   height:6px;
   border-radius:50%;
+}
+
+/* 🔥 FIX +2 */
+.more{
+  font-size:10px;
+  line-height:1;
+  opacity:.8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 2px;
 }
 
 .dot.yudistira{ background:#22c55e; }
