@@ -306,23 +306,21 @@ container.innerHTML = live.map(v => {
     : ""
 
   return `
-  <a class="live-item ${isLive ? "is-live" : "is-soon"}" href="${v.url}" target="_blank">
-    
-    <div class="live-thumb">
-      ${thumb ? `<img src="${thumb}">` : ""}
-    </div>
+ return `
+  <a class="live-card ${isLive ? "is-live" : "is-soon"}" href="${v.url || '#'}" target="_blank">
+  
+  <div class="live-thumb-big">
+    ${thumb ? `<img src="${thumb}">` : ""}
+    ${isLive ? `<span class="live-badge">LIVE</span>` : ""}
+  </div>
 
-    <div class="live-info">
-      <p class="live-title">${v.title || ""}</p>
-      <span class="live-channel">${v.member || ""}</span>
-    </div>
+  <div class="live-meta">
+    <p class="live-title">${v.title || ""}</p>
+    <span class="live-channel">${v.member || ""}</span>
+  </div>
 
-    <span class="live-status">
-      ${isLive ? "LIVE" : "SOON"}
-    </span>
-
-  </a>
-  `
+</a>
+`
 }).join("")
 }
 
