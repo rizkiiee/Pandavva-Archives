@@ -1,13 +1,22 @@
 :root{
-  --bg-soft:#f1e5f6;
-  --bg-blue:#b7d3f4;
-  --primary:#7181c8;
-  --secondary:#ababdc;
-  --pink:#f1cfed;
+  /* 🌸 base palette */
+  --bg-main:#FCF8FB;
+  --bg-purple:#969BE7;
+  --bg-pink:#EEC1DD;
+  --bg-soft:#D1D0EF;
 
-  --text-dark:#2a2a3a;
-  --text-soft:#5a5a7a;
+  /* ✨ glass & layer */
+  --glass:rgba(255,255,255,0.5);
+  --glass-border:rgba(255,255,255,0.4);
 
+  /* 🖋 text */
+  --text-main:#2a2a3a;
+  --text-soft:#6b6b8a;
+
+  /* 🌫 shadow */
+  --shadow-soft:rgba(150,155,231,0.15);
+
+  /*Member*/
   --arjuna:#f28b82;   /* soft coral red */
   --sadewa:#f6d365;   /* pastel yellow */
   --nakula:#8ec5fc;   /* soft sky blue */
@@ -21,13 +30,13 @@
 body{
   margin:0;
   font-family:sans-serif;
-  color:#2a2a3a;
+  color:var(--text-main);
 
-  background: linear-gradient(
-    135deg,
-    #f1e5f6,
-    #b7d3f4
-  );
+  background:
+    radial-gradient(circle at 20% 20%, var(--bg-purple), transparent 40%),
+    radial-gradient(circle at 80% 30%, var(--bg-pink), transparent 40%),
+    radial-gradient(circle at 50% 80%, var(--bg-soft), transparent 40%),
+    var(--bg-main);
 }
 
 a{
@@ -79,9 +88,9 @@ main{
 }
 
 .topbar{
-  background:rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
-  color:#2a2a3a;
+  background:var(--glass);
+  backdrop-filter: blur(12px);
+  color:var(--text-main);
 }
 
 .leftTitle{
@@ -235,10 +244,11 @@ main{
    7. VIDEO CARD
 ========================= */
 .video{
-  background:rgba(255,255,255,0.6);
-  backdrop-filter: blur(6px);
-  border-radius:14px;
-  padding:8px;
+  background:var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius:16px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 8px 20px var(--shadow-soft);
 }
 
 .video:hover{
@@ -444,14 +454,17 @@ main{
   width:100%;
   padding:12px;
 
-  border-radius:12px;
   color:white;
 
   font-weight:500;
 }
 
 .event-item{
-  background:rgba(113,129,200,0.15);
+  background:var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius:16px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 8px 20px var(--shadow-soft);
 }
 
 .event-channel{
@@ -554,14 +567,14 @@ main{
 }
 
 .calendar-day{
-  background:rgba(255,255,255,0.4);
+  background:var(--glass);
 }
 
 .calendar-day.active{
-  background: linear-gradient(
+  background:linear-gradient(
     135deg,
-    var(--primary),
-    var(--pink)
+    var(--bg-purple),
+    var(--bg-pink)
   );
   color:white;
 }
@@ -652,11 +665,11 @@ main{
 }
 
 .live-card{
-  background:rgba(255,255,255,0.5);
-  backdrop-filter: blur(6px);
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.3);
-  padding:10px;
+  background:var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius:16px;
+  border:1px solid var(--glass-border);
+  box-shadow:0 8px 20px var(--shadow-soft);
 }
 
 /* thumbnail besar */
