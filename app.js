@@ -189,7 +189,7 @@ new Date(b.date) - new Date(a.date)
 
 grid.innerHTML=
 sorted
-.slice(0,8)
+.slice(0,4)
 .map(card)
 .join("")
 
