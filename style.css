@@ -877,6 +877,16 @@ h2{
   overflow:hidden; /* 🔥 WAJIB BANGET */
 }
 
-.highlight-wrapper{
-  background:red;
+.module h2{
+  font-size:22px;   /* sebelumnya sekitar 16-18 */
+  font-weight:600;
+  color:#3c3a88;
+  letter-spacing:0.5px;
+
+  margin-bottom:14px;
+}
+
+.section-header h2{
+  font-size:22px;
+  font-weight:600;
 }
