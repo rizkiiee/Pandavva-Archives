@@ -854,3 +854,8 @@ h2{
   align-items:center;
   margin-bottom:10px;
 }
+
+.module{
+  border-radius:24px;
+  overflow:hidden; /* 🔥 WAJIB BANGET */
+}
