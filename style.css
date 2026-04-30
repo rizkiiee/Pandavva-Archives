@@ -355,24 +355,27 @@ h2{
   background-size:cover;
   background-position:center;
   filter:brightness(.85);
-  border-radius:inherit;
+  border-radius:20px;
 }
 
 /* OVERLAY */
 .highlight-overlay{
   position:absolute;
   inset:0;
-  border-radius:inherit;
-  overflow:hidden;
 
   background:linear-gradient(
     to top,
-    rgba(56,42,95,0.85),
-    rgba(101,105,204,0.5),
+    rgba(101,105,204,0.7),
+    rgba(101,105,204,0.3),
     transparent
   );
-}
 
+  border-radius:20px; /* 🔥 paksa radius */
+  pointer-events:none;
+
+  /* 🔥 INI YANG NGUNCI */
+  clip-path: inset(0 round 20px);
+}
 /* TEXT CONTENT */
 .highlight-content{
   position:absolute;
@@ -430,6 +433,7 @@ h2{
 
   scroll-snap-align:start;
   position:relative;
+  isolation:isolate;
 }
 
 .highlight-card{
