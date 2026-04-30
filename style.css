@@ -363,28 +363,27 @@ h2{
 
   background:linear-gradient(
     to top,
-    rgba(101,105,204,0.7),   /* 🔥 ungu */
-    rgba(101,105,204,0.3),
+    rgba(101,105,204,0.85),
+    rgba(101,105,204,0.4),
     transparent
   );
-
-  border-radius:inherit;
 }
 
 /* TEXT CONTENT */
 .highlight-content{
   position:absolute;
-  left:20px;
-  bottom:20px;
-  right:20px; /* 🔥 penting biar gak overflow */
+  left:24px;
+  bottom:24px;
+  right:24px;
 
   z-index:2;
 }
 
 .highlight-content h3{
-  font-size:26px;
+  font-size:28px;
   font-weight:600;
   color:white;
+  line-height:1.3;
 }
 
 .highlight-content p{
@@ -399,18 +398,8 @@ h2{
 
 .highlight-row{
   display:flex;
-  gap:0; /* ❌ jangan ada gap */
 
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-
-  scroll-behavior:smooth;
-}
-
-.highlight-row{
-  display:flex;
-
-  overflow-x:auto;
+  overflow-x:hidden;
   scroll-snap-type:x mandatory;
 
   scroll-behavior:smooth;
@@ -444,10 +433,29 @@ h2{
   margin-top:10px;
 }
 
+.highlight-dots span{
+  width:6px;
+  height:6px;
+}
+
 .highlight-dots span.active{
-  background:#fff;
   width:18px;
+  background:white;
   border-radius:10px;
+}
+
+.highlight-tag{
+  display:inline-block;
+
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:12px;
+
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(6px);
+
+  color:white;
+  margin-bottom:8px;
 }
 
 /* =========================
