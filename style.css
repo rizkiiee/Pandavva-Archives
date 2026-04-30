@@ -356,15 +356,16 @@ h2{
   filter:brightness(.85);
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 .highlight-overlay{
   position:absolute;
   inset:0;
 
   background:linear-gradient(
     to top,
-    rgba(101,105,204,0.85),
-    rgba(101,105,204,0.4),
+    rgba(56,42,95,0.85),
+    rgba(101,105,204,0.5),
+    rgba(245,168,225,0.2),
     transparent
   );
 }
@@ -375,6 +376,9 @@ h2{
   left:24px;
   bottom:24px;
   right:24px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 
   z-index:2;
 }
@@ -399,7 +403,7 @@ h2{
 .highlight-row{
   display:flex;
 
-  overflow-x:hidden;
+  overflow-x:auto; /* ✅ WAJIB */
   scroll-snap-type:x mandatory;
 
   scroll-behavior:smooth;
@@ -419,6 +423,10 @@ h2{
   scroll-snap-align:start;
 }
 
+.highlight-card{
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+}
+
 .highlight-wrapper{
   width:100%;
   overflow:hidden; /* 🔥 penting */
@@ -436,6 +444,8 @@ h2{
 .highlight-dots span{
   width:6px;
   height:6px;
+  background:rgba(255,255,255,0.4); /* 🔥 tambahin ini */
+  border-radius:50%;
 }
 
 .highlight-dots span.active{
