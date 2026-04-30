@@ -433,7 +433,7 @@ h2{
 
   border-radius:20px;
   overflow:hidden;
-  clip-path inset(0 round 20px);
+  clip-path: inset(0 round 20px);
 
   scroll-snap-align:start;
   position:relative;
