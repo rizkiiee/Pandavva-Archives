@@ -647,44 +647,26 @@ function getMemberColor(name){
   const n = name?.toLowerCase() || ""
 
   if(n.includes("arjuna")){
-    return {
-      bg: "#fde2e4",
-      dot: "#e58a9a"
-    }
+    return { bg:"#f5d0e6", dot:"#e58a9a" }
   }
 
   if(n.includes("sadewa")){
-    return {
-      bg: "#fff4cc",
-      dot: "#e8c96f"
-    }
+    return { bg:"#f6e7c8", dot:"#e8c96f" }
   }
 
   if(n.includes("nakula")){
-    return {
-      bg: "#e3ecff",
-      dot: "#8ea8f0"
-    }
+    return { bg:"#dbe4ff", dot:"#8ea8f0" }
   }
 
   if(n.includes("bima")){
-    return {
-      bg: "#eee6ff",
-      dot: "#b39ddb"
-    }
+    return { bg:"#e6ddff", dot:"#a88bd6" }
   }
 
   if(n.includes("yudistira")){
-    return {
-      bg: "#e0f4ec",
-      dot: "#7cc9a6"
-    }
+    return { bg:"#dff3ea", dot:"#7cc9a6" }
   }
 
-  return {
-    bg: "#f5f5f5",
-    dot: "#ccc"
-  }
+  return { bg:"#eee", dot:"#ccc" }
 }
 
 /*HIGHLIGHT*/
