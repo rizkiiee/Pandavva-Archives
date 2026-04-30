@@ -1,49 +1,19 @@
 :root{
-  /* 🌌 BACKGROUND (night pastel) */
-  --bg-deep:#1e2a5a;
-  --bg-mid:#2f4fa3;
-  --bg-cloud:#7a6fd6;
-  --bg-soft:#b8b3f0;
+  --c1:#969BE7; /* ungu utama */
+  --c2:#EEC1DD; /* pink */
+  --c3:#D1D0EF; /* lavender bg */
+  --c4:#FCF8FB; /* putih creamy */
 
-  /* 📦 SURFACE (solid card) */
-  --surface:#f8f7ff;
-  --surface-2:#f1efff;
-
-  /* 🖋 TEXT */
   --text-main:#2a2a3a;
   --text-soft:#6b6b8a;
-  --text-invert:#ffffff;
-
-  /* ✨ ACCENT */
-  --accent:#969BE7;
-  --accent-soft:#D1D0EF;
-
-  /* 🌫 BORDER & SHADOW */
   --border:rgba(0,0,0,0.06);
-  --shadow:0 10px 25px rgba(0,0,0,0.12);
-
-  /* ⭐ SPECIAL */
-  --star:#ffe7a6;
-}
-
-:root{
-  --arjuna:#e58a8a;    /* soft red */
-  --sadewa:#e8c96f;    /* muted yellow */
-  --nakula:#7fb6e8;    /* soft blue */
-  --bima:#a88bd6;      /* lavender purple */
-  --yudistira:#7cc9a6; /* mint green */
 }
 
 /* =========================
    1. GLOBAL
 ========================= */
 body{
-  background:
-    radial-gradient(circle at 20% 80%, var(--bg-cloud) 0%, transparent 40%),
-    radial-gradient(circle at 80% 20%, var(--bg-mid) 0%, transparent 50%),
-    radial-gradient(circle at 50% 100%, var(--bg-soft) 0%, transparent 40%),
-    var(--bg-deep);
-
+  background:var(--c3);
   color:var(--text-main);
 }
 
@@ -138,8 +108,7 @@ main{
 }
 
 .sidebar-mini{
-  background:var(--surface-2);
-  border-right:1px solid var(--border);
+  background:var(--c2);
 }
 
 .sidebar-mini img{
@@ -229,6 +198,12 @@ main{
   min-width:0;
 }
 
+.home-left{
+  background:var(--c4);
+  border-radius:20px;
+  padding:20px;
+}
+
 .home-right{
   width:100%;
   max-width:none;
@@ -237,6 +212,13 @@ main{
   gap:20px;
   position:sticky;
   top:80px;
+}
+
+.home-right{
+  background:var(--c1);
+  border-radius:20px;
+  padding:20px;
+  color:white;
 }
 
 /* =========================
@@ -253,11 +235,9 @@ main{
    7. VIDEO CARD
 ========================= */
 .video{
-  background:var(--surface);
-  color:var(--text-main);
-  border-radius:16px;
+  background:white;
+  border-radius:14px;
   border:1px solid var(--border);
-  box-shadow:var(--shadow);
 }
 
 .video:hover{
@@ -478,11 +458,8 @@ main{
 }
 
 .event-item{
-  background:var(--surface);
-  color:var(--text-main);
-  border-radius:16px;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
+  background:white;
+  border-radius:14px;
 }
 
 .event-channel{
