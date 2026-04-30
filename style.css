@@ -365,7 +365,6 @@ h2{
     to top,
     rgba(56,42,95,0.85),
     rgba(101,105,204,0.5),
-    rgba(245,168,225,0.2),
     transparent
   );
 }
@@ -374,7 +373,7 @@ h2{
 .highlight-content{
   position:absolute;
   left:24px;
-  bottom:24px;
+  bottom:40px;
   right:24px;
   display:flex;
   flex-direction:column;
@@ -388,6 +387,7 @@ h2{
   font-weight:600;
   color:white;
   line-height:1.3;
+  margin-top:4px;
 }
 
 .highlight-content p{
@@ -444,8 +444,9 @@ h2{
 .highlight-dots span{
   width:6px;
   height:6px;
-  background:rgba(255,255,255,0.4); /* 🔥 tambahin ini */
+  background:rgba(255,255,255,0.4);
   border-radius:50%;
+  transition:all .2s;
 }
 
 .highlight-dots span.active{
@@ -466,6 +467,7 @@ h2{
 
   color:white;
   margin-bottom:8px;
+  align-self:flex-start;
 }
 
 /* =========================
