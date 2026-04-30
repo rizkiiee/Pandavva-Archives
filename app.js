@@ -692,21 +692,47 @@ function renderHighlights(){
       : ""
 
     return `
-      <div class="highlight-card" onclick="goToHighlight('${key}')">
+      <div class="highlight-card">
+    
+      <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
 
-        <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
+      <div class="highlight-overlay"></div>
 
-        <div class="highlight-overlay"></div>
-
-        <div class="highlight-content">
-          <h3>${key}</h3>
-          <p>${vids.length} videos</p>
-          <span class="highlight-desc">Deskripsi kamu di sini</span>
-        </div>
-
+      <div class="highlight-content">
+        <span class="highlight-tag">${category}</span>
+        <h3>${title}</h3>
       </div>
-    `
+
+    </div>
+   `;
   }).join("")
+
+  const total = Object.keys(groups).length
+  renderDots(total)
+  setupHighlightScroll(total)  
+}
+
+function setupHighlightScroll(total){
+  const row = document.getElementById("highlightCarousel")
+  const dots = document.querySelectorAll(".highlight-dots span")
+
+  // klik dot → geser
+  dots.forEach((dot, i)=>{
+    dot.addEventListener("click", ()=>{
+      row.scrollTo({
+        left: i * row.clientWidth,
+        behavior:"smooth"
+      })
+    })
+  })
+
+  // scroll → update dot aktif
+  row.addEventListener("scroll", ()=>{
+    const index = Math.round(row.scrollLeft / row.clientWidth)
+
+    dots.forEach(d=>d.classList.remove("active"))
+    if(dots[index]) dots[index].classList.add("active")
+  })
 }
 
 function getHighlights(){
