@@ -1,11 +1,23 @@
 :root{
-  --c1:#969BE7; /* ungu utama */
-  --c2:#EEC1DD; /* pink */
-  --c3:#D1D0EF; /* lavender bg */
-  --c4:#FCF8FB; /* putih creamy */
+  /* 🌌 BASE */
+  --bg-dark:#453574;
+  --bg-mid:#62488F;
+  --bg-light:#6569CC;
 
+  /* 🎨 ACCENT */
+  --accent-pink:#F5A8E1;
+  --accent-soft:#C777B6;
+
+  /* 📦 SURFACE */
+  --surface:#ffffff;
+  --surface-soft:#f6f4ff;
+
+  /* 🖋 TEXT */
   --text-main:#2a2a3a;
   --text-soft:#6b6b8a;
+  --text-white:#ffffff;
+
+  /* 🌫 EFFECT */
   --border:rgba(0,0,0,0.06);
 }
 
@@ -21,7 +33,13 @@
    1. GLOBAL
 ========================= */
 body{
-  background:var(--c3);
+  background:linear-gradient(
+    135deg,
+    var(--bg-dark),
+    var(--bg-mid),
+    var(--bg-light)
+  );
+
   color:var(--text-main);
 }
 
@@ -79,8 +97,9 @@ main{
 }
 
 .leftTitle{
-  font-size:24px;
+  color:white;
   font-weight:700;
+  font-size:24px;
 }
 
 h2{
@@ -116,7 +135,11 @@ h2{
 }
 
 .sidebar-mini{
-  background:#e6e3f8;
+  background:linear-gradient(
+    180deg,
+    #62488F,
+    #453574
+  );
 }
 
 .sidebar-mini img{
@@ -207,9 +230,11 @@ h2{
 }
 
 .home-left{
-  background:var(--c4);
+  background:var(--surface);
   border-radius:20px;
   padding:20px;
+
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 .home-right{
@@ -223,10 +248,18 @@ h2{
 }
 
 .home-right{
-  background:var(--c1);
+  background:linear-gradient(
+    135deg,
+    #7b6fd6,
+    #8e94f2
+  );
+
   border-radius:20px;
   padding:20px;
+
   color:white;
+
+  box-shadow:0 20px 40px rgba(0,0,0,0.2);
 }
 
 /* =========================
@@ -243,14 +276,15 @@ h2{
    7. VIDEO CARD
 ========================= */
 .video{
-  background:white;
+  background:var(--surface);
   border-radius:14px;
-  border:1px solid var(--border);
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
 .video:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 25px rgba(150,155,231,0.25);
+  transform:translateY(-4px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.15);
 }
 
 .thumb{
@@ -466,8 +500,16 @@ h2{
 }
 
 .event-item{
-  background:white;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+
   border-radius:14px;
+  padding:12px;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  border:1px solid rgba(255,255,255,0.3);
+
+  color:var(--text-main);
 }
 
 .event-channel{
