@@ -363,6 +363,7 @@ h2{
   position:absolute;
   inset:0;
   border-radius:inherit;
+  overflow:hidden;
 
   background:linear-gradient(
     to top,
@@ -455,6 +456,7 @@ h2{
   border-radius:50%;
   background:rgba(255,255,255,0.3);
   transition:.3s;
+  z-index:5;
 }
 
 .highlight-dots span.active{
