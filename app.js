@@ -691,20 +691,21 @@ function renderHighlights(){
       ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`
       : ""
 
-    return `
-      <div class="highlight-card">
-    
-      <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
+return `
+  <div class="highlight-card">
 
-      <div class="highlight-overlay"></div>
+    <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
 
-      <div class="highlight-content">
-        <span class="highlight-tag">${category}</span>
-        <h3>${title}</h3>
-      </div>
+    <div class="highlight-overlay"></div>
 
+    <div class="highlight-content">
+      <span class="highlight-tag">${key}</span>
+      <h3>${latest.title || ""}</h3>
     </div>
-   `;
+
+  </div>
+`
+  ;
   }).join("")
 
   const total = Object.keys(groups).length
