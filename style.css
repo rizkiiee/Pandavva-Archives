@@ -376,7 +376,7 @@ h2{
 .highlight-content{
   position:absolute;
   left:24px;
-  bottom:10px;
+  bottom:14px;
   right:24px;
   display:flex;
   flex-direction:column;
@@ -439,6 +439,7 @@ h2{
   overflow:hidden; /* 🔥 penting */
   position:relative;
   margin-bottom:16px; 
+  border-radius:20px;
 }
 
 .highlight-dots{
