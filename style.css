@@ -235,6 +235,7 @@ h2{
   background:var(--surface);
   border-radius:20px;
   padding:20px;
+  overflow:hidden;
 
   box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
@@ -857,5 +858,6 @@ h2{
 
 .module{
   border-radius:24px;
+  background:transparant;
   overflow:hidden; /* 🔥 WAJIB BANGET */
 }
