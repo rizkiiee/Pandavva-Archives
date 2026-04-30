@@ -9,6 +9,14 @@
   --border:rgba(0,0,0,0.06);
 }
 
+:root{
+  --arjuna:#e58a9a;   /* pinkish (dekat c2) */
+  --sadewa:#e8c96f;   /* warm accent */
+  --nakula:#8ea8f0;   /* dekat c1 */
+  --bima:#b39ddb;     /* lavender */
+  --yudistira:#7cc9a6;/* soft green (accent beda dikit biar hidup) */
+}
+
 /* =========================
    1. GLOBAL
 ========================= */
@@ -71,13 +79,13 @@ main{
 }
 
 .leftTitle{
-  font-size:24px;   /* 🔥 lebih besar dari section title */
+  font-size:24px;
   font-weight:700;
-  letter-spacing:0.5px;
+}
 
-  background:linear-gradient(90deg, #969BE7, #EEC1DD);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+h2{
+  font-size:18px;
+  margin-bottom:10px;
 }
 
 .topbar button{
