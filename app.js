@@ -616,7 +616,7 @@ container.innerHTML = events.map(v => {
   const memberColor = getMemberColor(v.member)
   
   return `
-  <div class="event-item" style="background:${color}">
+  <div class="event-item" style="background:${memberColor.bg}">
     <img src="${ch.avatar}" class="event-avatar">
 
     <div class="event-info">
