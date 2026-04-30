@@ -694,7 +694,7 @@ function renderHighlights(){
 return `
   <div class="highlight-card">
 
-    <div class="highlight-bg" style="background-image:url('${thumb}')"></div>
+    <img class="highlight-bg" src="${thumb}" />
 
     <div class="highlight-overlay"></div>
 
