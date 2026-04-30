@@ -862,3 +862,7 @@ h2{
   background:transparant;
   overflow:hidden; /* 🔥 WAJIB BANGET */
 }
+
+.highlight-wrapper{
+  background:red;
+}
