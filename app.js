@@ -717,7 +717,6 @@ function setupHighlightScroll(total){
   const row = document.getElementById("highlightCarousel")
   const dots = document.querySelectorAll(".highlight-dots span")
 
-  // klik dot → geser
   dots.forEach((dot, i)=>{
     dot.addEventListener("click", ()=>{
       row.scrollTo({
@@ -727,16 +726,15 @@ function setupHighlightScroll(total){
     })
   })
 
-  // scroll → update dot aktif
   row.addEventListener("scroll", ()=>{
     const index = Math.round(row.scrollLeft / row.clientWidth)
 
     dots.forEach(d=>d.classList.remove("active"))
     if(dots[index]) dots[index].classList.add("active")
   })
-// 🔥 aktifin dot pertama
-const dots = document.querySelectorAll(".highlight-dots span")
-if(dots[0]) dots[0].classList.add("active")
+
+  // ✅ cukup ini
+  if(dots[0]) dots[0].classList.add("active")
 }
 
 function getHighlights(){
