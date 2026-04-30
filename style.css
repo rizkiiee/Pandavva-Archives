@@ -445,11 +445,10 @@ h2{
 
 .highlight-wrapper{
   width:100%;
-  overflow:hidden; /* 🔥 penting */
+  overflow:hidden;
   position:relative;
-  margin-bottom:16px; 
+  margin-bottom:40px; /* ganti padding jadi margin */
   border-radius:20px;
-  padding-bottom:30px;
 }
 
 .highlight-dots{
