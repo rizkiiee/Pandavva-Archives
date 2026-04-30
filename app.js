@@ -734,7 +734,8 @@ function setupHighlightScroll(total){
     dots.forEach(d=>d.classList.remove("active"))
     if(dots[index]) dots[index].classList.add("active")
   })
-  // default aktif pertama
+// 🔥 aktifin dot pertama
+const dots = document.querySelectorAll(".highlight-dots span")
 if(dots[0]) dots[0].classList.add("active")
 }
 
