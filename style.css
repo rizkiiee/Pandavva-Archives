@@ -447,15 +447,19 @@ h2{
   width:100%;
   overflow:hidden;
   position:relative;
-  margin-bottom:40px; /* ganti padding jadi margin */
   border-radius:20px;
 }
 
 .highlight-dots{
+  position:absolute;
+  bottom:12px;      /* 🔥 posisi di dalam card */
+  left:50%;
+  transform:translateX(-50%);
+
   display:flex;
-  justify-content:center;
   gap:8px;
-  margin-top:12px;
+
+  z-index:10;       /* 🔥 di atas bg & overlay */
 }
 
 .highlight-dots span{
