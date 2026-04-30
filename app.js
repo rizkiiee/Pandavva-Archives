@@ -646,13 +646,13 @@ function selectDate(e, date){
 function getMemberColor(name){
   const n = name?.toLowerCase() || ""
 
-  if(n.includes("yudistira")) return "linear-gradient(135deg, #7bdcb5, #f1e5f6)"
-  if(n.includes("arjuna")) return "linear-gradient(135deg, #f28b82, #f1cfed)"
-  if(n.includes("nakula")) return "linear-gradient(135deg, #8ec5fc, #b7d3f4)"
-  if(n.includes("sadewa")) return "linear-gradient(135deg, #f6d365, #f1e5f6)"
-  if(n.includes("bima")) return "linear-gradient(135deg, #a88bd6, #f1cfed)"
-  
-  return "#eee"
+  if(n.includes("yudistira")) return "linear-gradient(135deg, #7cc9a6, #e8f5ef)"
+  if(n.includes("arjuna")) return "linear-gradient(135deg, #e58a8a, #f6d6d6)"
+  if(n.includes("nakula")) return "linear-gradient(135deg, #7fb6e8, #d6e9f8)"
+  if(n.includes("sadewa")) return "linear-gradient(135deg, #e8c96f, #f6edd2)"
+  if(n.includes("bima")) return "linear-gradient(135deg, #a88bd6, #ece4fb)"
+
+  return "#ffffff"
 }
 
 /*HIGHLIGHT*/
