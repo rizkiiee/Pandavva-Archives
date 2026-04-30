@@ -354,12 +354,14 @@ h2{
   background-size:cover;
   background-position:center;
   filter:brightness(.85);
+  border-radius:inherit;
 }
 
 /* OVERLAY */
 .highlight-overlay{
   position:absolute;
   inset:0;
+  border-radius:inherit;
 
   background:linear-gradient(
     to top,
