@@ -613,8 +613,8 @@ container.innerHTML = events.map(v => {
       avatar: "https://ui-avatars.com/api/?name=" + encodeURIComponent(channelName)
     }
 
-  const color = getMemberColor(v.member)
-
+  const memberColor = getMemberColor(v.member)
+  
   return `
   <div class="event-item" style="background:${color}">
     <img src="${ch.avatar}" class="event-avatar">
@@ -646,13 +646,45 @@ function selectDate(e, date){
 function getMemberColor(name){
   const n = name?.toLowerCase() || ""
 
-  if(n.includes("yudistira")) return "linear-gradient(135deg, #7cc9a6, #e8f5ef)"
-  if(n.includes("arjuna")) return "linear-gradient(135deg, #e58a8a, #f6d6d6)"
-  if(n.includes("nakula")) return "linear-gradient(135deg, #7fb6e8, #d6e9f8)"
-  if(n.includes("sadewa")) return "linear-gradient(135deg, #e8c96f, #f6edd2)"
-  if(n.includes("bima")) return "linear-gradient(135deg, #a88bd6, #ece4fb)"
+  if(n.includes("arjuna")){
+    return {
+      bg: "#fde2e4",
+      dot: "#e58a9a"
+    }
+  }
 
-  return "#ffffff"
+  if(n.includes("sadewa")){
+    return {
+      bg: "#fff4cc",
+      dot: "#e8c96f"
+    }
+  }
+
+  if(n.includes("nakula")){
+    return {
+      bg: "#e3ecff",
+      dot: "#8ea8f0"
+    }
+  }
+
+  if(n.includes("bima")){
+    return {
+      bg: "#eee6ff",
+      dot: "#b39ddb"
+    }
+  }
+
+  if(n.includes("yudistira")){
+    return {
+      bg: "#e0f4ec",
+      dot: "#7cc9a6"
+    }
+  }
+
+  return {
+    bg: "#f5f5f5",
+    dot: "#ccc"
+  }
 }
 
 /*HIGHLIGHT*/
