@@ -1,42 +1,50 @@
 :root{
-  /* 🌸 base palette */
-  --bg-main:#FCF8FB;
-  --bg-purple:#969BE7;
-  --bg-pink:#EEC1DD;
-  --bg-soft:#D1D0EF;
+  /* 🌌 BACKGROUND (night pastel) */
+  --bg-deep:#1e2a5a;
+  --bg-mid:#2f4fa3;
+  --bg-cloud:#7a6fd6;
+  --bg-soft:#b8b3f0;
 
-  /* ✨ glass & layer */
-  --glass:rgba(255,255,255,0.5);
-  --glass-border:rgba(255,255,255,0.4);
+  /* 📦 SURFACE (solid card) */
+  --surface:#f8f7ff;
+  --surface-2:#f1efff;
 
-  /* 🖋 text */
+  /* 🖋 TEXT */
   --text-main:#2a2a3a;
   --text-soft:#6b6b8a;
+  --text-invert:#ffffff;
 
-  /* 🌫 shadow */
-  --shadow-soft:rgba(150,155,231,0.15);
+  /* ✨ ACCENT */
+  --accent:#969BE7;
+  --accent-soft:#D1D0EF;
 
-  /*Member*/
-  --arjuna:#f28b82;   /* soft coral red */
-  --sadewa:#f6d365;   /* pastel yellow */
-  --nakula:#8ec5fc;   /* soft sky blue */
-  --bima:#c3aed6;     /* lavender purple */
-  --yudistira:#7bdcb5; /* mint green */
+  /* 🌫 BORDER & SHADOW */
+  --border:rgba(0,0,0,0.06);
+  --shadow:0 10px 25px rgba(0,0,0,0.12);
+
+  /* ⭐ SPECIAL */
+  --star:#ffe7a6;
+}
+
+:root{
+  --arjuna:#e58a8a;    /* soft red */
+  --sadewa:#e8c96f;    /* muted yellow */
+  --nakula:#7fb6e8;    /* soft blue */
+  --bima:#a88bd6;      /* lavender purple */
+  --yudistira:#7cc9a6; /* mint green */
 }
 
 /* =========================
    1. GLOBAL
 ========================= */
 body{
-  margin:0;
-  font-family:sans-serif;
-  color:var(--text-main);
-
   background:
-    radial-gradient(circle at 20% 20%, var(--bg-purple), transparent 40%),
-    radial-gradient(circle at 80% 30%, var(--bg-pink), transparent 40%),
-    radial-gradient(circle at 50% 80%, var(--bg-soft), transparent 40%),
-    var(--bg-main);
+    radial-gradient(circle at 20% 80%, var(--bg-cloud) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, var(--bg-mid) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, var(--bg-soft) 0%, transparent 40%),
+    var(--bg-deep);
+
+  color:var(--text-main);
 }
 
 a{
@@ -85,7 +93,8 @@ main{
 
   padding:0 20px;
 
-  background:transparent; /* 🔥 nyatu sama background */
+  background:transparent;
+  color:var(--text-invert); /* 🔥 nyatu sama background */
   backdrop-filter:none;
 
   z-index:1100;
@@ -129,9 +138,8 @@ main{
 }
 
 .sidebar-mini{
-  background:rgba(255,255,255,0.35);
-  backdrop-filter: blur(10px);
-  border-right:1px solid rgba(255,255,255,0.4);
+  background:var(--surface-2);
+  border-right:1px solid var(--border);
 }
 
 .sidebar-mini img{
@@ -245,11 +253,11 @@ main{
    7. VIDEO CARD
 ========================= */
 .video{
-  background:var(--glass);
-  backdrop-filter: blur(10px);
+  background:var(--surface);
+  color:var(--text-main);
   border-radius:16px;
-  border:1px solid rgba(255,255,255,0.5);
-  box-shadow:0 6px 18px rgba(150,155,231,0.15);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
 
 .video:hover{
@@ -470,11 +478,11 @@ main{
 }
 
 .event-item{
-  background:var(--glass);
-  backdrop-filter: blur(10px);
+  background:var(--surface);
+  color:var(--text-main);
   border-radius:16px;
-  border:1px solid rgba(255,255,255,0.6);
-  box-shadow:0 6px 18px rgba(150,155,231,0.15);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
 
 .event-channel{
@@ -577,20 +585,17 @@ main{
 }
 
 .calendar-day{
-  background:var(--glass);
+  background:var(--surface-2);
+  color:var(--text-main);
 }
 
 .calendar-day.active{
-  background:linear-gradient(
-    135deg,
-    var(--bg-purple),
-    var(--bg-pink)
-  );
+  background:var(--accent);
   color:white;
 }
 
 .calendar-day.selected{
-  border:2px solid white;
+  border:2px solid var(--star);
 }
 
 /* =========================
@@ -675,11 +680,11 @@ main{
 }
 
 .live-card{
-  background:var(--glass);
-  backdrop-filter: blur(10px);
+  background:var(--surface);
+  color:var(--text-main);
   border-radius:16px;
-  border:1px solid rgba(255,255,255,0.5);
-  box-shadow:0 6px 18px rgba(150,155,231,0.15);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
 
 .live-card:hover{
