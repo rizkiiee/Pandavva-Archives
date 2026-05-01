@@ -504,23 +504,39 @@ h2{
 
 .calendar-week{
   display:flex;
-  gap:4px;
+  gap:6px;
   width:100%;
+
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(10px);
+
+  padding:10px;
+  border-radius:16px;
+
+  border:1px solid rgba(255,255,255,0.15);
 }
 
 .calendar-day{
-  width:52px;
-  padding:6px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
   flex:1;
+  height:64px;
 
-  height:52px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+
+  border-radius:12px;
+  cursor:pointer;
+
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(6px);
+
+  transition:all 0.2s ease;
+}
+
+.calendar-day:hover{
+  background:rgba(255,255,255,0.2);
+  transform:translateY(-2px);
 }
 
 .selected-events{
@@ -612,16 +628,12 @@ h2{
   margin-bottom:2px;
 }
 
-.calendar-day{
-  padding:4px;
-  height:56px;
-}
-
 .calendar-dots{
   display:flex;
   align-items:center;   /* 🔥 ini kunci utama */
   justify-content:center;
   gap:4px;
+  margin-top:4px;
   height:10px;          /* 🔥 paksa tinggi sama */
 }
 
@@ -648,25 +660,17 @@ h2{
 .dot.bima{ background:var(--bima); }
 
 .calendar-day{
-  height:50px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-}
-
-.calendar-day{
-  background:var(--surface-2);
   color:var(--text-main);
 }
 
 .calendar-day.active{
-  background:var(--accent);
-  color:white;
+  background:white;
+  color:#453574;
+  font-weight:600;
 }
 
 .calendar-day.selected{
-  border:2px solid var(--star);
+  border:2px solid rgba(255,255,255,0.6);
 }
 
 /* =========================
