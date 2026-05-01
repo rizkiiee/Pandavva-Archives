@@ -500,21 +500,16 @@ h2{
   gap:10px;
   width:100%;
   overflow:hidden; /* 🔥 penting */
+  padding:10px;
+  border-radius:20px;
+
+  border:1px solid rgba(255,255,255,0.25);
 }
 
 .calendar-week{
   display:flex;
   gap:10px;
   width:100%;
-
-  padding:12px;
-
-  border-radius:20px;
-
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(14px);
-
-  border:1px solid rgba(255,255,255,0.2);
 }
 
 .calendar-day{
@@ -530,13 +525,17 @@ h2{
 
   cursor:pointer;
 
-  background:rgba(255,255,255,0.15);
+  background:rgba(60, 50, 140, 0.6); /* 🔥 UNGU GELAP */
 
   transition:all 0.2s ease;
 }
 
+.calendar-day{
+  color:rgba(255,255,255,0.85);
+}
+
 .calendar-day:hover{
-  background:rgba(255,255,255,0.25);
+  background:rgba(80, 70, 170, 0.8);
 }
 
 .selected-events{
@@ -619,11 +618,11 @@ h2{
 
 .day-name{
   font-size:11px;
-  opacity:0.6;
+  opacity:0.7;
 }
 
 .day-number{
-  font-size:16px;
+  font-size:15px;
   font-weight:600;
 }
 
@@ -657,16 +656,14 @@ h2{
 .dot.bima{ background:var(--bima); }
 
 .calendar-day.active{
-  background:white;
-  color:#453574;
+  background:#f5a8e1; /* 🔥 PINK */
+  color:white;
   font-weight:600;
 }
 
 .calendar-day.selected{
-  background:white;
-  color:#5b4bb7;
-
-  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+  background:transparent;  /* ❗ jangan putih */
+  border:2px solid white;
 }
 
 .calendar-day:not(.selected){
